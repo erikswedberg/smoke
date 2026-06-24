@@ -61,8 +61,16 @@ tier-flow .flow-row.is-active { background: #f3f3f3; }
 tier-flow .flow-row.is-active .flow-name { color: var(--ink); font-weight: 700; }
 tier-flow .flow-row.is-dimmed { opacity: 0.3; }
 
-/* column headers */
+/* column headers (first grid row, above each list) */
 tier-flow .flow-colhead {
-  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.06em; color: var(--ink-faint); padding: 0 0.4rem 0.4rem;
+  font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.07em; color: var(--ink-dim);
+  padding: 0 0.4rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 0.3rem;
 }
+tier-flow .flow-colhead--left { text-align: right; }
+tier-flow .flow-colhead--right { text-align: left; }
+tier-flow .flow-colhead--mid { border-bottom: 0; }
+/* match the 50px downward offset of the honorable column */
+tier-flow .flow-colhead--right { margin-top: 50px; }

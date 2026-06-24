@@ -8,6 +8,10 @@
   </div>
 
   <div class="flow-grid">
+    <div class="flow-colhead flow-colhead--left">11–50</div>
+    <div class="flow-colhead flow-colhead--mid" aria-hidden="true"></div>
+    <div class="flow-colhead flow-colhead--right">Honorable</div>
+
     <ul class="flow-col flow-col--left">
       {% for j in left %}
       <li class="flow-row{% if j.linked %} is-linked{% endif %}" data-id="{{ j.id }}">

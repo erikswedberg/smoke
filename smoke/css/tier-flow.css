@@ -65,12 +65,8 @@ tier-flow .flow-row.is-dimmed { opacity: 0.3; }
 tier-flow .flow-colhead {
   font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
   letter-spacing: 0.07em; color: var(--ink-dim);
-  padding: 0 0.4rem 0.5rem;
-  border-bottom: 1px solid var(--line);
-  margin-bottom: 0.3rem;
+  text-align: left;
+  padding: 0 0.4rem 0.15rem;
 }
-tier-flow .flow-colhead--left { text-align: right; }
-tier-flow .flow-colhead--right { text-align: left; }
-tier-flow .flow-colhead--mid { border-bottom: 0; }
-/* match the 50px downward offset of the honorable column */
-tier-flow .flow-colhead--right { margin-top: 50px; }
+/* both headers sit on the same line; the 50px step lives BELOW the Honorable
+   title (between it and its list), via the column's own margin-top. */

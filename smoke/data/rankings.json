@@ -659,7 +659,8 @@
       "shortCode": "EM",
       "city": "Wolfforth",
       "address": "217 US-62, Wolfforth, TX 79382",
-      "color": "#2E8B57"
+      "color": "#2E8B57",
+      "logo": "logos/evie-maes.jpg"
     },
     "truth-bbq": {
       "name": "Truth BBQ",

@@ -69,7 +69,10 @@ export default class BumpChart extends BaseComponent {
           points.push({ year: y, slot: "gutter", gutter: true, band, uncertain: false, rank: null });
         }
       }
-      // last year in the ranked top 10 (where the coin goes)
+      // The coin sits at the joint's LAST year in the ranked top 10 — where
+      // it belongs, at its peak. The line still tails on DOWN through the
+      // 11-50 and 51-100 bands in later years, so the fall from grace shows
+      // as a descending line even though the logo marks the high-water mark.
       let coinIdx = -1;
       for (let i = points.length - 1; i >= 0; i--) {
         if (points[i] && !points[i].gutter) { coinIdx = i; break; }
@@ -100,23 +103,35 @@ export default class BumpChart extends BaseComponent {
     const width = this.clientWidth || 900;
     const M = { top: 32, right: 180, bottom: 30, left: 40 };
     const rowH = 44;                 // vertical space per rank
-    const gutterH = 130;             // the off-the-top-10 band (room to spread)
+    const bandH = 80;                // each below-the-fold band
+    const bandGap = 14;              // gap between the two bands
     const plotH = RANKS * rowH;
-    const height = M.top + plotH + gutterH + M.bottom;
+    // two stacked "below the top 10" bands: 11-50, then 51-100
+    const fiftyTop = M.top + plotH + 12;
+    const fiftyBot = fiftyTop + bandH;
+    const hundredTop = fiftyBot + bandGap;
+    const hundredBot = hundredTop + bandH;
+    const height = hundredBot + M.bottom;
 
     const x = d3.scalePoint().domain(yrs).range([M.left, width - M.right]).padding(0.5);
-    // rank 1..10 -> band centers; gutter -> spread within the band per joint
     const yRank = (r) => M.top + (r - 0.5) * rowH;
-    const gutterTop = M.top + plotH + 10;
-    const gutterBot = M.top + plotH + gutterH - 6;
-    // jitter assigns each charted joint a stable lane inside the gutter band
+
+    // jitter assigns each charted joint a stable lane within a band so the
+    // many lines that share a band don't perfectly overlap.
     const jitter = new Map(trajs.map((t, i) => [t.id, i]));
-    const gutterY = (id) => {
+    const laneY = (top, bot, id) => {
       const n = trajs.length || 1;
       const f = ((jitter.get(id) ?? 0) + 0.5) / n;
-      return gutterTop + f * (gutterBot - gutterTop);
+      return top + f * (bot - top);
     };
-    const slotY = (slot, id) => (slot === "gutter" ? gutterY(id) : yRank(slot));
+    // Route a point to its Y: ranked -> rank row; band 'fifty' -> 11-50 band;
+    // band 'honorable' -> 51-100 band.
+    const slotY = (p, id) => {
+      if (!p.gutter) return yRank(p.slot);
+      return p.band === "honorable"
+        ? laneY(hundredTop, hundredBot, id)
+        : laneY(fiftyTop, fiftyBot, id);
+    };
 
     // (re)build the SVG root
     this.innerHTML = "";
@@ -129,17 +144,20 @@ export default class BumpChart extends BaseComponent {
       .attr("role", "img")
       .attr("aria-label", "Top 10 BBQ rankings across editions");
 
-    // --- gutter band ---
-    svg.append("rect")
-      .attr("class", "bump-gutter")
-      .attr("x", M.left - 8).attr("y", M.top + plotH + 4)
-      .attr("width", width - M.right - M.left + 16).attr("height", gutterH - 8)
-      .attr("rx", 4);
-    svg.append("text")
-      .attr("class", "bump-gutter-label")
-      .attr("x", M.left).attr("y", (gutterTop + gutterBot) / 2)
-      .attr("dy", "0.32em")
-      .text("off the top 10");
+    // --- below-the-fold bands: 11-50 and 51-100 ---
+    const bandX = M.left - 8;
+    const bandW = width - M.right - M.left + 16;
+    [[fiftyTop, fiftyBot, "11–50"], [hundredTop, hundredBot, "Honorable 51–100"]].forEach(([top, bot, label]) => {
+      svg.append("rect")
+        .attr("class", "bump-gutter")
+        .attr("x", bandX).attr("y", top)
+        .attr("width", bandW).attr("height", bot - top)
+        .attr("rx", 4);
+      svg.append("text")
+        .attr("class", "bump-gutter-label")
+        .attr("x", M.left).attr("y", top + 12)
+        .text(label);
+    });
 
     // --- gridlines + rank labels ---
     const grid = svg.append("g").attr("class", "bump-grid");
@@ -165,7 +183,7 @@ export default class BumpChart extends BaseComponent {
     // --- lines ---
     const lineFor = (id) => d3.line()
       .x((p) => x(p.year))
-      .y((p) => slotY(p.slot, id))
+      .y((p) => slotY(p, id))
       .curve(d3.curveMonotoneX);
 
     const seriesG = svg.append("g").attr("class", "bump-series");
@@ -208,7 +226,7 @@ export default class BumpChart extends BaseComponent {
         .join("circle")
         .attr("class", (p) => "node" + (p.gutter ? " is-gutter" : "") + (p.uncertain ? " is-uncertain" : ""))
         .attr("cx", (p) => x(p.year))
-        .attr("cy", (p) => slotY(p.slot, t.id))
+        .attr("cy", (p) => slotY(p, t.id))
         .attr("r", 3)
         .attr("fill", t.color);
     });
@@ -219,7 +237,7 @@ export default class BumpChart extends BaseComponent {
       .attr("class", "bump-coin")
       .attr("transform", (t) => {
         const p = t.points[t.coinIdx];
-        return `translate(${x(p.year)},${slotY(p.slot, t.id)})`;
+        return `translate(${x(p.year)},${slotY(p, t.id)})`;
       });
 
     // Each coin: an outer <g> positions it (translate); an inner <g.coin-scale>
@@ -257,7 +275,7 @@ export default class BumpChart extends BaseComponent {
         const p = t.points[t.coinIdx];
         return t.coinIdx === lastIdx ? x(p.year) + R + 8 : x(p.year) - R - 8;
       })
-      .attr("y", (t) => slotY(t.points[t.coinIdx].slot, t.id))
+      .attr("y", (t) => slotY(t.points[t.coinIdx], t.id))
       .attr("dy", "0.32em")
       .attr("text-anchor", (t) => (t.coinIdx === lastIdx ? "start" : "end"))
       .text((t) => t.name);

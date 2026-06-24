@@ -141,6 +141,30 @@ export default class TierFlow extends BaseComponent {
       return `M0,${d.y1} C${cx},${d.y1} ${cx},${d.y2} ${w},${d.y2}`;
     };
 
+    // arrowhead markers (one per color would be ideal; instead we use
+    // currentColor via a per-path marker is overkill — use two neutral
+    // markers, right-pointing for 'fell', left-pointing for 'rose', tinted
+    // to match each link via marker context isn't supported, so we color the
+    // marker to the link by minting one marker per link id).
+    let defs = svg.querySelector("defs");
+    if (!defs) { defs = document.createElementNS(svg.namespaceURI, "defs"); svg.appendChild(defs); }
+    d3.select(defs).selectAll("marker.flow-arrow")
+      .data(links, (d) => d.id)
+      .join((enter) => {
+        const m = enter.append("marker")
+          .attr("class", "flow-arrow")
+          .attr("id", (d) => `arr-${d.id}`)
+          .attr("viewBox", "0 0 8 8")
+          .attr("refX", 6).attr("refY", 4)
+          .attr("markerWidth", 6).attr("markerHeight", 6)
+          .attr("orient", "auto-start-reverse");
+        m.append("path").attr("d", "M0,0 L8,4 L0,8")
+          .attr("fill", "none").attr("stroke-width", 1.5)
+          .attr("stroke-linejoin", "round").attr("stroke-linecap", "round");
+        return m;
+      })
+      .select("path").attr("stroke", (d) => d.color);
+
     const sel = d3.select(svg).selectAll("path.flow-link")
       .data(links, (d) => d.id);
     sel.join("path")
@@ -148,6 +172,10 @@ export default class TierFlow extends BaseComponent {
       .attr("data-id", (d) => d.id)
       .attr("fill", "none")
       .attr("stroke", (d) => d.color)
+      // 'fell' flows left->right (arrow at end, into C); 'rose' flows the
+      // other way, so we draw the marker at the start pointing back to B.
+      .attr("marker-end", (d) => (d.dir === "fell" ? `url(#arr-${d.id})` : null))
+      .attr("marker-start", (d) => (d.dir === "rose" ? `url(#arr-${d.id})` : null))
       .attr("d", path);
 
     this.applyHover();

@@ -10,6 +10,8 @@ tier-flow .flow-grid {
 }
 
 tier-flow .flow-col { list-style: none; margin: 0; padding: 0; }
+/* nudge the honorable (C) column down to read as a downward trend */
+tier-flow .flow-col--right { margin-top: 50px; }
 
 tier-flow .flow-row {
   display: grid;

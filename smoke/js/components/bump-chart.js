@@ -61,9 +61,12 @@ export default class BumpChart extends BaseComponent {
           // a placeholder slot so the point still sits in the ranked zone;
           // it's always marked uncertain (dashed/dimmed).
           const slot = h.rank ?? this._unknownSlot(data, y);
-          points.push({ year: y, slot, gutter: false, uncertain: h.uncertain || h.rank == null, rank: h.rank });
+          points.push({ year: y, slot, gutter: false, band: null, uncertain: h.uncertain || h.rank == null, rank: h.rank });
         } else {
-          points.push({ year: y, slot: "gutter", gutter: true, uncertain: false, rank: null });
+          // Below the top 10: route to the "11-50" or "honorable" band so the
+          // line shows movement between the three lists.
+          const band = h.tier === "honorable" ? "honorable" : "fifty";
+          points.push({ year: y, slot: "gutter", gutter: true, band, uncertain: false, rank: null });
         }
       }
       // last year in the ranked top 10 (where the coin goes)
@@ -219,25 +222,28 @@ export default class BumpChart extends BaseComponent {
         return `translate(${x(p.year)},${slotY(p.slot, t.id)})`;
       });
 
-    // clip each coin into a circle
+    // Each coin: an outer <g> positions it (translate); an inner <g.coin-scale>
+    // holds the visuals so CSS can scale it on hover (clip, bg, logo, ring all
+    // grow together). clip-path is in the inner group's local coords, so the
+    // clipped logo scales with it.
     const defs = svg.append("defs");
     coins.each(function (t) {
       const id = `clip-${t.id}`;
       defs.append("clipPath").attr("id", id)
         .append("circle").attr("r", R);
-      const g = d3.select(this);
-      g.append("circle").attr("class", "coin-bg").attr("r", R).attr("fill", t.color);
+      const scale = d3.select(this).append("g").attr("class", "coin-scale");
+      scale.append("circle").attr("class", "coin-bg").attr("r", R).attr("fill", t.color);
       if (t.logo) {
-        g.append("image")
+        scale.append("image")
           .attr("href", "/" + t.logo)
           .attr("x", -R).attr("y", -R).attr("width", 2 * R).attr("height", 2 * R)
           .attr("preserveAspectRatio", "xMidYMid slice")
           .attr("clip-path", `url(#${id})`);
       } else {
-        g.append("text").attr("class", "coin-code")
+        scale.append("text").attr("class", "coin-code")
           .attr("dy", "0.34em").text(t.shortCode);
       }
-      g.append("circle").attr("class", "coin-ring").attr("r", R).attr("fill", "none");
+      scale.append("circle").attr("class", "coin-ring").attr("r", R).attr("fill", "none");
     });
 
     // --- name tags: one per line, beside its coin ---
@@ -257,8 +263,15 @@ export default class BumpChart extends BaseComponent {
       .text((t) => t.name);
 
     // --- interaction: hover isolates ---
-    series
-      .on("pointerenter", (_e, t) => this.highlight(t.id))
+    // Track at the SVG level rather than per-line enter/leave: moving onto a
+    // line (path/coin/dot) highlights it; moving to empty space or off the
+    // chart clears it. This avoids the "sticky hover" you get from per-element
+    // enter/leave when the coin scales up and the active line is re-parented.
+    svg
+      .on("pointermove", (e) => {
+        const el = e.target.closest(".bump-line");
+        this.highlight(el ? el.__data__.id : null);
+      })
       .on("pointerleave", () => this.highlight(null));
 
     this._svg = svg;
@@ -266,6 +279,7 @@ export default class BumpChart extends BaseComponent {
   }
 
   highlight(id) {
+    if (this.state.highlightedId === id) return; // no-op on re-entry
     this.state.highlightedId = id;
     this.applyHighlight();
     this.emit("joint-hover", { id });
@@ -278,6 +292,12 @@ export default class BumpChart extends BaseComponent {
     this._svg.selectAll("g.bump-line")
       .classed("is-active", (t) => id && t.id === id)
       .classed("is-dimmed", (t) => id && t.id !== id);
+    // Raise the active line (and its enlarged coin) above the others —
+    // SVG paint order is DOM order, so move it to the end of its group.
+    if (id) {
+      this._svg.selectAll("g.bump-line").filter((t) => t.id === id)
+        .each(function () { this.parentNode.appendChild(this); });
+    }
   }
 
   attributeChangedCallback(name) {

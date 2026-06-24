@@ -1,0 +1,25 @@
+{# tier-list: joints in a tier, grouped by city (city pop desc).
+   Content-only template (no wrapper tag). #}
+{% if cities and cities.length %}
+<div class="tier-list-container">
+  {% for city in cities %}
+  <section class="tier-city">
+    <h3 class="tier-city__name">{{ city.name }}<span class="tier-city__count">{{ city.joints.length }}</span></h3>
+    <ul class="tier-city__joints">
+      {% for j in city.joints %}
+      <li class="tier-joint" data-id="{{ j.id }}" title="{{ j.name }} — {{ j.years | join(', ') }}">
+        <span class="tier-joint__coin" style="--coin: {{ j.color }}">
+          {% if j.logo %}<img class="tier-joint__logo" src="/{{ j.logo }}" alt="" loading="lazy">
+          {% else %}<span class="tier-joint__code">{{ j.shortCode }}</span>{% endif %}
+        </span>
+        <span class="tier-joint__name">{{ j.name }}</span>
+        <span class="tier-joint__years">{{ j.years | join(' · ') }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endfor %}
+</div>
+{% else %}
+<div class="smoke-loading">Loading…</div>
+{% endif %}

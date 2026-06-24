@@ -1,0 +1,23 @@
+{# restaurant-card: one joint's identity + rank history. Content-only. #}
+{% if r %}
+<div class="restaurant-card-container">
+  <span class="restaurant-card__coin" style="--coin: {{ r.color }}">
+    {% if r.logo %}<img src="/{{ r.logo }}" alt="{{ r.name }} logo">
+    {% else %}<span class="restaurant-card__code">{{ r.shortCode }}</span>{% endif %}
+  </span>
+  <div class="restaurant-card__body">
+    <p class="restaurant-card__name">{{ r.name }}</p>
+    <p class="restaurant-card__city">{{ r.city }}</p>
+    <ul class="restaurant-card__history">
+      {% for h in r.history %}
+      <li class="restaurant-card__year{% if h.uncertain %} is-uncertain{% endif %}">
+        <span class="rc-year">{{ h.year }}</span>
+        <span class="rc-rank">{% if h.rank %}#{{ h.rank }}{% elif h.tier == 'top50' %}11–50{% else %}HM{% endif %}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% else %}
+<div class="smoke-loading">—</div>
+{% endif %}

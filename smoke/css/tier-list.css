@@ -1,0 +1,64 @@
+/* <tier-list> — joints grouped by city. Clean, tabular. */
+
+tier-list { display: block; }
+
+tier-list .tier-list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem 2.5rem;
+}
+
+tier-list .tier-city { break-inside: avoid; }
+
+tier-list .tier-city__name {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.25rem;
+  border-bottom: 1px solid var(--line);
+}
+tier-list .tier-city__count {
+  font-weight: 400;
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+}
+
+tier-list .tier-city__joints { list-style: none; margin: 0; padding: 0; }
+
+tier-list .tier-joint {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--line);
+}
+tier-list .tier-joint:last-child { border-bottom: 0; }
+
+tier-list .tier-joint__coin {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--coin, var(--smoke));
+  display: grid; place-items: center;
+  overflow: hidden;
+}
+tier-list .tier-joint__logo { width: 100%; height: 100%; object-fit: cover; }
+tier-list .tier-joint__code {
+  font-weight: 700;
+  font-size: 0.62rem;
+  color: #fff;
+  text-shadow: 0 0 2px rgba(0,0,0,.35);
+}
+
+tier-list .tier-joint__name { font-size: 0.9rem; color: var(--ink); }
+tier-list .tier-joint__years {
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}

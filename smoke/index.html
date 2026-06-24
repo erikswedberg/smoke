@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Smoke Rankings — Texas Monthly Top 50 BBQ, 2008–2025</title>
+  <meta name="description" content="Every joint that ever cracked Texas Monthly's Top 50 BBQ list, rising and falling across five editions since 2008.">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/bump-chart.css">
+  <link rel="stylesheet" href="/css/tier-list.css">
+  <link rel="stylesheet" href="/css/restaurant-card.css">
+</head>
+<body>
+  <main class="smoke-main">
+    <section class="smoke-section" aria-labelledby="bump-heading">
+      <h2 id="bump-heading" class="smoke-section__title">Top 10</h2>
+      <bump-chart></bump-chart>
+    </section>
+
+    <section class="smoke-section" aria-labelledby="tier-heading">
+      <h2 id="tier-heading" class="smoke-section__title">11–50</h2>
+      <tier-list tier="top50"></tier-list>
+    </section>
+
+    <section class="smoke-section" aria-labelledby="honorable-heading">
+      <h2 id="honorable-heading" class="smoke-section__title">Honorable mentions <span class="smoke-section__note">2021, 2025</span></h2>
+      <tier-list tier="honorable"></tier-list>
+    </section>
+  </main>
+
+  <!-- globals: define `nunjucks` and `Idiomorph` -->
+  <script src="/lib/nunjucks.min.js"></script>
+  <script src="/lib/idiomorph.min.js"></script>
+  <!-- d3 for the bump chart -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+  <!-- shared client-only nunjucks env (sets window.Smoke.templateEnv) -->
+  <script type="module" src="/lib/template-env.js"></script>
+  <!-- app entry: registers components, loads data, hands it down -->
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

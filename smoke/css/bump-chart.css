@@ -29,7 +29,7 @@ bump-chart .bump-line .seg {
   opacity: 0.85;
   transition: opacity 0.15s ease, stroke-width 0.15s ease;
 }
-bump-chart .bump-line.is-uncertain .seg { stroke-dasharray: 4 4; opacity: 0.6; }
+bump-chart .bump-line.is-uncertain .seg { opacity: 0.6; }
 bump-chart .bump-line .node { opacity: 0.85; transition: opacity 0.15s ease; }
 bump-chart .bump-line .node.is-gutter { opacity: 0.5; }
 bump-chart .bump-line .node.is-uncertain { opacity: 0.45; }

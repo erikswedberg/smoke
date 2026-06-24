@@ -1,7 +1,7 @@
 {# tier-flow: B (11–50) on the left, a D3 spline channel in the middle, and
    C (honorable) on the right. Lines (drawn by JS in afterRender) connect
    joints that crossed between the two lists. Content-only. #}
-<div class="tier-flow-container">
+<div class="tier-flow-container{% if slidersOnly %} is-sliders-only{% endif %}">
   <div class="smoke-section__bar">
     <h2 class="smoke-section__title smoke-section__title--inbar">Between the lists <span class="smoke-section__note">11–50 &harr; honorable</span></h2>
     <filter-bar groups="{{ groups | dump | e }}"></filter-bar>

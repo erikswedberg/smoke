@@ -92,6 +92,8 @@ export default class TierFlow extends BaseComponent {
     return {
       left: f.left.map(tag),
       right: f.right.map(tag),
+      // only fallers selected -> the downward offset reads truthfully
+      slidersOnly: this.state.activeMoves.length === 1 && this.state.activeMoves[0] === "fell",
       groups: [
         {
           key: "moves",

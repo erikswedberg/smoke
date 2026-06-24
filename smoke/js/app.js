@@ -9,6 +9,7 @@
 import "./components/bump-chart.js";
 import "./components/tier-list.js";
 import "./components/tier-section.js";
+import "./components/tier-flow.js";
 import "./components/filter-bar.js";
 import "./components/restaurant-card.js";
 

@@ -1,0 +1,39 @@
+{# tier-flow: B (11–50) on the left, a D3 spline channel in the middle, and
+   C (honorable) on the right. Lines (drawn by JS in afterRender) connect
+   joints that crossed between the two lists. Content-only. #}
+<div class="tier-flow-container">
+  <div class="smoke-section__bar">
+    <h2 class="smoke-section__title smoke-section__title--inbar">Between the lists <span class="smoke-section__note">11–50 &harr; honorable</span></h2>
+    <filter-bar groups="{{ groups | dump | e }}"></filter-bar>
+  </div>
+
+  <div class="flow-grid">
+    <ul class="flow-col flow-col--left">
+      {% for j in left %}
+      <li class="flow-row{% if j.linked %} is-linked{% endif %}" data-id="{{ j.id }}">
+        <span class="flow-years">{{ j.years | join(' · ') }}</span>
+        <span class="flow-name">{{ j.name }}</span>
+        <span class="flow-coin" style="--coin: {{ j.color }}">
+          {% if j.logo %}<img src="/{{ j.logo }}" alt="" loading="lazy">{% else %}<span>{{ j.shortCode }}</span>{% endif %}
+        </span>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <div class="flow-channel">
+      <svg class="flow-svg" aria-hidden="true"></svg>
+    </div>
+
+    <ul class="flow-col flow-col--right">
+      {% for j in right %}
+      <li class="flow-row{% if j.linked %} is-linked{% endif %}" data-id="{{ j.id }}">
+        <span class="flow-coin" style="--coin: {{ j.color }}">
+          {% if j.logo %}<img src="/{{ j.logo }}" alt="" loading="lazy">{% else %}<span>{{ j.shortCode }}</span>{% endif %}
+        </span>
+        <span class="flow-name">{{ j.name }}</span>
+        <span class="flow-years">{{ j.years | join(' · ') }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

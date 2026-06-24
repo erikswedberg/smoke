@@ -131,3 +131,83 @@ export function tierByCity(data, tier, activeYears = null) {
         }))
         .sort((a, b) => cityRank(b.name) - cityRank(a.name) || a.name.localeCompare(b.name));
 }
+
+/**
+ * Flow between two tiers (e.g. "top50" -> "honorable"): the joints in each
+ * tier and the links for joints that appear in BOTH across editions (i.e.
+ * crossed between the two lists over time). Used by <tier-flow>.
+ *
+ * Within a single edition the two tiers are disjoint, so links only exist
+ * when multiple years are in play. `activeYears` (a Set or null) filters which
+ * editions count.
+ *
+ * Returns { left:[joint...], right:[joint...], links:[{id,dir}] } where dir is
+ * "fell" (was in tierA earlier, tierB later) or "rose" (the reverse). Columns
+ * are ordered to keep linked joints near the same height (light de-tangling):
+ * linked joints first (right column follows left's order), then the rest.
+ */
+export function tierFlow(data, tierA, tierB, activeYears = null) {
+    const inYears = (y) => !activeYears || activeYears.has(y);
+
+    const collect = (tier) => {
+        const m = new Map(); // id -> Set(years)
+        for (const r of data.rankings) {
+            if (r.tier !== tier || !inYears(r.year)) continue;
+            if (!m.has(r.id)) m.set(r.id, new Set());
+            m.get(r.id).add(r.year);
+        }
+        return m;
+    };
+    const A = collect(tierA);
+    const B = collect(tierB);
+
+    const joint = (id, yearSet) => ({
+        ...restaurant(data, id),
+        years: [...yearSet].sort((a, b) => a - b),
+    });
+
+    // links: joints present in both columns. Direction reflects the MOST
+    // RECENT crossing between the two lists: build the joint's tierA/tierB
+    // timeline and look at the last A->B or B->A step. (Earliest-year logic
+    // would mislabel joints like Stiles Switch that bounced both ways.)
+    const links = [];
+    for (const id of A.keys()) {
+        if (!B.has(id)) continue;
+        // merge this joint's appearances in the two tiers, in time order
+        const seq = [];
+        for (const y of A.get(id)) seq.push({ y, t: "A" });
+        for (const y of B.get(id)) seq.push({ y, t: "B" });
+        seq.sort((a, b) => a.y - b.y);
+        // find the last step where the tier changed
+        let dir = "fell";
+        for (let i = seq.length - 1; i > 0; i--) {
+            if (seq[i].t !== seq[i - 1].t) {
+                dir = seq[i - 1].t === "A" ? "fell" : "rose"; // A->B fell, B->A rose
+                break;
+            }
+        }
+        links.push({ id, dir });
+    }
+    const linkedIds = new Set(links.map((l) => l.id));
+
+    const byName = (a, b) => a.name.localeCompare(b.name);
+    const linkedFirst = (m) => {
+        const all = [...m.keys()].map((id) => joint(id, m.get(id)));
+        const linked = all.filter((j) => linkedIds.has(j.id)).sort(byName);
+        const rest = all.filter((j) => !linkedIds.has(j.id)).sort(byName);
+        return { linked, rest };
+    };
+
+    const L = linkedFirst(A);
+    const R = linkedFirst(B);
+    // right column: linked joints in the SAME order as the left column so the
+    // connector lines run roughly parallel; then the unlinked remainder.
+    const leftOrder = L.linked.map((j) => j.id);
+    R.linked.sort((a, b) => leftOrder.indexOf(a.id) - leftOrder.indexOf(b.id));
+
+    return {
+        left: [...L.linked, ...L.rest],
+        right: [...R.linked, ...R.rest],
+        links,
+    };
+}

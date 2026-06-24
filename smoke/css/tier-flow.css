@@ -1,0 +1,66 @@
+/* <tier-flow> — two columns flanking a D3 spline channel. */
+
+tier-flow { display: block; }
+
+tier-flow .flow-grid {
+  display: grid;
+  grid-template-columns: 1fr clamp(120px, 18vw, 280px) 1fr;
+  align-items: start;
+  gap: 0;
+}
+
+tier-flow .flow-col { list-style: none; margin: 0; padding: 0; }
+
+tier-flow .flow-row {
+  display: grid;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.2rem 0.4rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.82rem;
+  transition: opacity 0.12s ease, background 0.12s ease;
+}
+/* left column: years | name | coin (coin against the channel) */
+tier-flow .flow-col--left .flow-row { grid-template-columns: auto 1fr 22px; text-align: right; }
+/* right column: coin | name | years (coin against the channel) */
+tier-flow .flow-col--right .flow-row { grid-template-columns: 22px 1fr auto; text-align: left; }
+
+tier-flow .flow-name { color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+tier-flow .flow-years { color: var(--ink-faint); font-size: 0.7rem; font-variant-numeric: tabular-nums; }
+
+/* unlinked rows are quieter context */
+tier-flow .flow-row:not(.is-linked) .flow-name { color: var(--ink-dim); }
+tier-flow .flow-row:not(.is-linked) { opacity: 0.7; }
+
+tier-flow .flow-coin {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--coin, var(--smoke));
+  display: grid; place-items: center; overflow: hidden;
+}
+tier-flow .flow-coin img { width: 100%; height: 100%; object-fit: cover; }
+tier-flow .flow-coin span { font-size: 0.55rem; font-weight: 700; color: #fff; text-shadow: 0 0 2px rgba(0,0,0,.35); }
+
+/* the spline channel */
+tier-flow .flow-channel { position: relative; align-self: stretch; min-height: 100%; }
+tier-flow .flow-svg { display: block; width: 100%; overflow: visible; }
+
+/* splines: light by default (joint color), darken/thicken on hover */
+tier-flow .flow-link {
+  stroke-width: 1.5;
+  opacity: 0.35;
+  transition: opacity 0.15s ease, stroke-width 0.15s ease;
+}
+/* when a link is hovered, dim the rest and spotlight it */
+tier-flow .flow-svg.has-hover .flow-link { opacity: 0.1; }
+tier-flow .flow-svg.has-hover .flow-link.is-active { opacity: 1; stroke-width: 3; }
+
+/* row highlight mirrors the spline hover */
+tier-flow .flow-row.is-active { background: #f3f3f3; }
+tier-flow .flow-row.is-active .flow-name { color: var(--ink); font-weight: 700; }
+tier-flow .flow-row.is-dimmed { opacity: 0.3; }
+
+/* column headers */
+tier-flow .flow-colhead {
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--ink-faint); padding: 0 0.4rem 0.4rem;
+}

@@ -10,22 +10,21 @@
   <link rel="stylesheet" href="/css/bump-chart.css">
   <link rel="stylesheet" href="/css/tier-list.css">
   <link rel="stylesheet" href="/css/restaurant-card.css">
+  <link rel="stylesheet" href="/css/filter-bar.css">
 </head>
 <body>
   <main class="smoke-main">
-    <section class="smoke-section" aria-labelledby="bump-heading">
+    <section class="smoke-section smoke-section--wide" aria-labelledby="bump-heading">
       <h2 id="bump-heading" class="smoke-section__title">Top 10</h2>
       <bump-chart></bump-chart>
     </section>
 
-    <section class="smoke-section" aria-labelledby="tier-heading">
-      <h2 id="tier-heading" class="smoke-section__title">11–50</h2>
-      <tier-list tier="top50"></tier-list>
+    <section class="smoke-section">
+      <tier-section tier="top50" heading="11–50" filterable></tier-section>
     </section>
 
-    <section class="smoke-section" aria-labelledby="honorable-heading">
-      <h2 id="honorable-heading" class="smoke-section__title">Honorable mentions <span class="smoke-section__note">2021, 2025</span></h2>
-      <tier-list tier="honorable"></tier-list>
+    <section class="smoke-section">
+      <tier-section tier="honorable" heading="Honorable mentions" note="2021, 2025" filterable></tier-section>
     </section>
   </main>
 

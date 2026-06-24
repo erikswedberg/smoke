@@ -13,6 +13,7 @@
 // down a thin tail into the gutter). Hover isolates a line.
 
 import BaseComponent from "../../lib/BaseComponent.js";
+import { whenData } from "../store.js";
 import { top10Restaurants, years } from "../data.js";
 
 const RANKS = 10;
@@ -27,17 +28,15 @@ export default class BumpChart extends BaseComponent {
 
   static props = { "highlighted-id": String };
 
-  set data(d) { this.state.data = d; this.draw(); }
-  get data() { return this.state.data; }
-
   onConnected() {
+    // Pull the dataset from the ambient store (immutable, not a prop).
+    whenData((data) => { this.state.data = data; this.draw(); });
     // Redraw on resize (debounced via rAF).
     this._ro = new ResizeObserver(() => {
       cancelAnimationFrame(this._raf);
       this._raf = requestAnimationFrame(() => this.draw());
     });
     this._ro.observe(this);
-    this.draw();
   }
 
   onDisconnected() { this._ro?.disconnect(); }
@@ -98,7 +97,7 @@ export default class BumpChart extends BaseComponent {
     const width = this.clientWidth || 900;
     const M = { top: 32, right: 180, bottom: 30, left: 40 };
     const rowH = 44;                 // vertical space per rank
-    const gutterH = 54;              // the off-the-top-10 band
+    const gutterH = 130;             // the off-the-top-10 band (room to spread)
     const plotH = RANKS * rowH;
     const height = M.top + plotH + gutterH + M.bottom;
 

@@ -1,0 +1,49 @@
+/* <filter-bar> — rows of toggle-pills (checkbox semantics). */
+
+filter-bar { display: block; }
+
+filter-bar .filter-bar-container {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+filter-bar .filter-group { display: flex; align-items: center; gap: 0.5rem; }
+filter-bar .filter-group__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+}
+filter-bar .filter-group__pills { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+
+filter-bar .filter-pill {
+  font: inherit;
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  padding: 0.32rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink-dim);
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+}
+filter-bar .filter-pill:hover { border-color: var(--ink-faint); }
+
+/* active (checked) pill: filled ink */
+filter-bar .filter-pill.is-on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+/* the "All" reset pill is quieter */
+filter-bar .filter-pill--all {
+  color: var(--ink-faint);
+  border-style: dashed;
+}
+filter-bar .filter-pill--all:hover { color: var(--ink); }

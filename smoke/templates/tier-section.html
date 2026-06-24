@@ -1,0 +1,12 @@
+{# tier-section: owns filter state; renders its title bar (with optional
+   filter-bar) and a tier-list. Props flow DOWN as attributes; the
+   filter-bar emits events that bubble UP to this component. Content-only. #}
+<div class="tier-section-container">
+  <div class="smoke-section__bar">
+    <h2 class="smoke-section__title smoke-section__title--inbar">{{ heading }}{% if note %} <span class="smoke-section__note">{{ note }}</span>{% endif %}</h2>
+    {% if filterable %}
+    <filter-bar groups="{{ groups | dump | e }}" active="{{ activeYears | dump | e }}"></filter-bar>
+    {% endif %}
+  </div>
+  <tier-list tier="{{ tier }}" active-years="{{ activeYears | dump | e }}"></tier-list>
+</div>

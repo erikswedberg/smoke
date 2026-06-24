@@ -1,27 +1,34 @@
-// <tier-list tier="top50|honorable"> — joints in a tier, grouped by city.
-// Template-driven (nunjucks -> idiomorph). Receives the dataset via the
-// `data` property from app.js.
+// <tier-list tier="top50" active-years="[2017,2021]"> — joints in a tier,
+// grouped by city. A controlled child: it pulls the (immutable) dataset from
+// the store on connect, and takes its filter as the `active-years` attribute
+// from its parent. No internal filter UI, no DOM reaching.
 
 import BaseComponent from "../../lib/BaseComponent.js";
+import { whenData } from "../store.js";
 import { tierByCity } from "../data.js";
 
 export default class TierList extends BaseComponent {
   constructor() {
     super();
     this.template = "tier-list.html";
-    this.state = { data: null };
+    this.state = { data: null, activeYears: null };
   }
 
-  // `tier` is fixed config (set in HTML), read directly — not reactive.
-  get tier() { return this.getAttribute("tier") || "top50"; }
+  static props = {
+    "tier": String,
+    "active-years": Array, // null/absent = no filter (all years)
+  };
 
-  // Data flows in as a property from app.js; trigger a render when set.
-  set data(d) { this.setState({ data: d }); }
-  get data() { return this.state.data; }
+  connectedCallback() {
+    super.connectedCallback();
+    whenData((data) => this.setState({ data }));
+  }
 
   getTemplateContext() {
     const d = this.state.data;
-    return { cities: d ? tierByCity(d, this.tier) : [] };
+    const years = this.state.activeYears; // Array or null
+    const filter = Array.isArray(years) ? new Set(years) : null;
+    return { cities: d ? tierByCity(d, this.state.tier || "top50", filter) : [] };
   }
 }
 

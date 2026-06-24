@@ -1,0 +1,22 @@
+{# filter-bar: groups of toggle-pills that filter the tier list.
+   Each group has a key (e.g. "years", later "regions") and a list of
+   options behaving like a row of checkboxes. Content-only. #}
+<div class="filter-bar-container">
+  {% for group in groups %}
+  <div class="filter-group" data-group="{{ group.key }}" role="group" aria-label="Filter by {{ group.label }}">
+    <span class="filter-group__label">{{ group.label }}</span>
+    <div class="filter-group__pills">
+      {% for opt in group.options %}
+      <button type="button"
+              class="filter-pill{% if opt.on %} is-on{% endif %}"
+              data-group="{{ group.key }}" data-value="{{ opt.value }}"
+              role="checkbox" aria-checked="{{ 'true' if opt.on else 'false' }}">
+        {{ opt.label }}
+      </button>
+      {% endfor %}
+      <button type="button" class="filter-pill filter-pill--all"
+              data-group="{{ group.key }}" data-action="all">All</button>
+    </div>
+  </div>
+  {% endfor %}
+</div>

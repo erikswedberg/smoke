@@ -36,10 +36,21 @@ h1, h2, h3 { font-weight: 700; line-height: 1.1; margin: 0; letter-spacing: -0.0
 a { color: inherit; }
 
 /* ---- main / sections ---- */
-.smoke-main { max-width: var(--maxw); margin: 0 auto; padding: 1.25rem 1.5rem 4rem; }
+.smoke-main { padding: 1.25rem 0 4rem; }
 
-.smoke-section { margin-top: 1.75rem; }
+/* Most sections are readable-width and centered... */
+.smoke-section {
+  max-width: var(--maxw);
+  margin: 1.75rem auto 0;
+  padding: 0 1.5rem;
+}
 .smoke-section:first-child { margin-top: 0.5rem; }
+
+/* ...but the chart goes nearly full-bleed, with a slight L-R margin. */
+.smoke-section--wide {
+  max-width: none;
+  padding: 0 clamp(1rem, 3vw, 3rem);
+}
 .smoke-section__title {
   font-size: 0.8rem;
   font-weight: 700;
@@ -51,6 +62,23 @@ a { color: inherit; }
   border-bottom: 1px solid var(--line);
 }
 .smoke-section__note { color: var(--ink-faint); font-weight: 400; }
+
+/* section header bar: title left, filters right, sharing the bottom rule */
+.smoke-section__bar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.smoke-section__title--inbar {
+  border-bottom: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
 
 /* ---- shared loading placeholder ---- */
 .smoke-loading {

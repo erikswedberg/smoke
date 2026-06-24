@@ -106,10 +106,11 @@ function cityRank(name) {
  * city, joints alphabetical. Each joint carries the list of years it sat in
  * that tier. Returns [{ name, joints: [{ ...restaurant, years: [..] }] }].
  */
-export function tierByCity(data, tier) {
+export function tierByCity(data, tier, activeYears = null) {
     const perJoint = new Map(); // id -> { years:Set }
     for (const r of data.rankings) {
         if (r.tier !== tier) continue;
+        if (activeYears && !activeYears.has(r.year)) continue;
         if (!perJoint.has(r.id)) perJoint.set(r.id, new Set());
         perJoint.get(r.id).add(r.year);
     }

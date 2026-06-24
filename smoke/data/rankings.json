@@ -606,7 +606,8 @@
       "shortCode": "CO",
       "city": "Spring",
       "address": "26608 Keith St, Spring, TX 77373",
-      "color": "#7E5109"
+      "color": "#7E5109",
+      "logo": "logos/corkscrew-bbq.png"
     },
     "big-boys-bar-b-que": {
       "name": "Big Boy's Bar-B-Que",

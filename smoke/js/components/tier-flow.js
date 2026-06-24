@@ -20,7 +20,7 @@ export default class TierFlow extends BaseComponent {
   constructor() {
     super();
     this.template = "tier-flow.html";
-    this.state = { data: null, allYears: [], activeYears: [], hovered: null };
+    this.state = { data: null, allYears: [], activeYears: [], activeMoves: ["fell", "rose"], hovered: null };
     this._ro = null;
   }
 
@@ -50,14 +50,24 @@ export default class TierFlow extends BaseComponent {
   onDisconnected() { this._ro?.disconnect(); }
 
   onToggle({ group, value, action }) {
-    if (group !== "years") return;
-    let active = new Set(this.state.activeYears);
-    if (action === "all") active = new Set(this.state.allYears);
-    else {
-      active.has(value) ? active.delete(value) : active.add(value);
-      if (active.size === 0) active = new Set(this.state.allYears);
+    if (group === "years") {
+      let active = new Set(this.state.activeYears);
+      if (action === "all") active = new Set(this.state.allYears);
+      else {
+        active.has(value) ? active.delete(value) : active.add(value);
+        if (active.size === 0) active = new Set(this.state.allYears);
+      }
+      this.setState({ activeYears: this.state.allYears.filter((y) => active.has(y)) });
+    } else if (group === "moves") {
+      const ALL = ["fell", "rose"];
+      let active = new Set(this.state.activeMoves);
+      if (action === "all") active = new Set(ALL);
+      else {
+        active.has(value) ? active.delete(value) : active.add(value);
+        if (active.size === 0) active = new Set(ALL);
+      }
+      this.setState({ activeMoves: ALL.filter((m) => active.has(m)) });
     }
-    this.setState({ activeYears: this.state.allYears.filter((y) => active.has(y)) });
   }
 
   setHover(id) {
@@ -71,7 +81,8 @@ export default class TierFlow extends BaseComponent {
   flow() {
     const d = this.state.data;
     if (!d) return { left: [], right: [], links: [] };
-    return tierFlow(d, "top50", "honorable", new Set(this.state.activeYears));
+    return tierFlow(d, "top50", "honorable",
+      new Set(this.state.activeYears), new Set(this.state.activeMoves));
   }
 
   getTemplateContext() {
@@ -81,13 +92,23 @@ export default class TierFlow extends BaseComponent {
     return {
       left: f.left.map(tag),
       right: f.right.map(tag),
-      groups: [{
-        key: "years",
-        label: "Year",
-        options: this.state.allYears.map((y) => ({
-          value: y, label: String(y), on: this.state.activeYears.includes(y),
-        })),
-      }],
+      groups: [
+        {
+          key: "moves",
+          label: "Move",
+          options: [
+            { value: "rose", label: "Risers", on: this.state.activeMoves.includes("rose") },
+            { value: "fell", label: "Sliders", on: this.state.activeMoves.includes("fell") },
+          ],
+        },
+        {
+          key: "years",
+          label: "Year",
+          options: this.state.allYears.map((y) => ({
+            value: y, label: String(y), on: this.state.activeYears.includes(y),
+          })),
+        },
+      ],
     };
   }
 

@@ -146,7 +146,7 @@ export function tierByCity(data, tier, activeYears = null) {
  * are ordered to keep linked joints near the same height (light de-tangling):
  * linked joints first (right column follows left's order), then the rest.
  */
-export function tierFlow(data, tierA, tierB, activeYears = null) {
+export function tierFlow(data, tierA, tierB, activeYears = null, activeMoves = null) {
     const inYears = (y) => !activeYears || activeYears.has(y);
 
     const collect = (tier) => {
@@ -188,34 +188,26 @@ export function tierFlow(data, tierA, tierB, activeYears = null) {
         }
         links.push({ id, dir });
     }
-    const linkedIds = new Set(links.map((l) => l.id));
+    const dirOf = new Map(links.map((l) => [l.id, l.dir]));
+
+    // Movement filter: activeMoves is a Set of dir values ('fell'/'rose') or
+    // null. When it's null or holds BOTH directions, don't filter (show every
+    // joint, movers and non-movers). When restricted to one direction, show
+    // ONLY the movers of that direction (non-movers drop out) — e.g. "Risers"
+    // isolates Stiles Switch.
+    const restrictMoves = activeMoves && activeMoves.size < 2;
+    const passMove = (id) => !restrictMoves || activeMoves.has(dirOf.get(id));
 
     const byName = (a, b) => a.name.localeCompare(b.name);
-    // "rose" links (climbed back up) sort to the very top so the rare escapees
-    // lead the list; then "fell", each alphabetical within its group.
-    const dirOf = new Map(links.map((l) => [l.id, l.dir]));
-    const byDirThenName = (a, b) => {
-        const da = dirOf.get(a.id) === "rose" ? 0 : 1;
-        const db = dirOf.get(b.id) === "rose" ? 0 : 1;
-        return da - db || byName(a, b);
-    };
-    const linkedFirst = (m) => {
-        const all = [...m.keys()].map((id) => joint(id, m.get(id)));
-        const linked = all.filter((j) => linkedIds.has(j.id)).sort(byDirThenName);
-        const rest = all.filter((j) => !linkedIds.has(j.id)).sort(byName);
-        return { linked, rest };
-    };
-
-    const L = linkedFirst(A);
-    const R = linkedFirst(B);
-    // right column: linked joints in the SAME order as the left column so the
-    // connector lines run roughly parallel; then the unlinked remainder.
-    const leftOrder = L.linked.map((j) => j.id);
-    R.linked.sort((a, b) => leftOrder.indexOf(a.id) - leftOrder.indexOf(b.id));
+    const column = (m) =>
+        [...m.keys()]
+            .filter(passMove)
+            .map((id) => joint(id, m.get(id)))
+            .sort(byName); // risers/sliders sit alphabetically among everyone else
 
     return {
-        left: [...L.linked, ...L.rest],
-        right: [...R.linked, ...R.rest],
-        links,
+        left: column(A),
+        right: column(B),
+        links: links.filter((l) => passMove(l.id)),
     };
 }

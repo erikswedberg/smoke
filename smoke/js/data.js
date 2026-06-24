@@ -191,9 +191,17 @@ export function tierFlow(data, tierA, tierB, activeYears = null) {
     const linkedIds = new Set(links.map((l) => l.id));
 
     const byName = (a, b) => a.name.localeCompare(b.name);
+    // "rose" links (climbed back up) sort to the very top so the rare escapees
+    // lead the list; then "fell", each alphabetical within its group.
+    const dirOf = new Map(links.map((l) => [l.id, l.dir]));
+    const byDirThenName = (a, b) => {
+        const da = dirOf.get(a.id) === "rose" ? 0 : 1;
+        const db = dirOf.get(b.id) === "rose" ? 0 : 1;
+        return da - db || byName(a, b);
+    };
     const linkedFirst = (m) => {
         const all = [...m.keys()].map((id) => joint(id, m.get(id)));
-        const linked = all.filter((j) => linkedIds.has(j.id)).sort(byName);
+        const linked = all.filter((j) => linkedIds.has(j.id)).sort(byDirThenName);
         const rest = all.filter((j) => !linkedIds.has(j.id)).sort(byName);
         return { linked, rest };
     };

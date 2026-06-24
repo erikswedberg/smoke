@@ -116,21 +116,33 @@ export default class BumpChart extends BaseComponent {
     const x = d3.scalePoint().domain(yrs).range([M.left, width - M.right]).padding(0.5);
     const yRank = (r) => M.top + (r - 0.5) * rowH;
 
-    // jitter assigns each charted joint a stable lane within a band so the
-    // many lines that share a band don't perfectly overlap.
-    const jitter = new Map(trajs.map((t, i) => [t.id, i]));
-    const laneY = (top, bot, id) => {
-      const n = trajs.length || 1;
-      const f = ((jitter.get(id) ?? 0) + 0.5) / n;
-      return top + f * (bot - top);
+    // Lane assignment within a band. Spread only among the joints that
+    // ACTUALLY visit that band (not all 20 lines), so two joints sharing a
+    // band get the full band height between them instead of a ~4px sliver.
+    // Lanes are stable per band so a joint's line stays smooth across years.
+    const bandMembers = { fifty: [], honorable: [] };
+    for (const t of trajs) {
+      const bands = new Set(t.points.filter((p) => p && p.gutter).map((p) => p.band));
+      for (const b of bands) bandMembers[b].push(t.id);
+    }
+    const laneIndex = { fifty: new Map(), honorable: new Map() };
+    for (const b of ["fifty", "honorable"]) {
+      bandMembers[b].forEach((id, i) => laneIndex[b].set(id, i));
+    }
+    const laneY = (top, bot, band, id) => {
+      const n = Math.max(bandMembers[band].length, 1);
+      const i = laneIndex[band].get(id) ?? 0;
+      const pad = (bot - top) * 0.1;            // keep lanes off the band edges
+      const f = (i + 0.5) / n;                   // 0..1 across members
+      return (top + pad) + f * (bot - top - 2 * pad);
     };
     // Route a point to its Y: ranked -> rank row; band 'fifty' -> 11-50 band;
     // band 'honorable' -> 51-100 band.
     const slotY = (p, id) => {
       if (!p.gutter) return yRank(p.slot);
       return p.band === "honorable"
-        ? laneY(hundredTop, hundredBot, id)
-        : laneY(fiftyTop, fiftyBot, id);
+        ? laneY(hundredTop, hundredBot, "honorable", id)
+        : laneY(fiftyTop, fiftyBot, "fifty", id);
     };
 
     // (re)build the SVG root

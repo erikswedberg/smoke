@@ -26,13 +26,13 @@ bump-chart .bump-gutter-label {
 /* lines */
 bump-chart .bump-line .seg {
   stroke-width: 2.5;
-  opacity: 0.85;
+  opacity: 0.4;            /* light by default, like the flow splines */
   transition: opacity 0.15s ease, stroke-width 0.15s ease;
 }
-bump-chart .bump-line.is-uncertain .seg { opacity: 0.6; }
-bump-chart .bump-line .node { opacity: 0.85; transition: opacity 0.15s ease; }
-bump-chart .bump-line .node.is-gutter { opacity: 0.5; }
-bump-chart .bump-line .node.is-uncertain { opacity: 0.45; }
+bump-chart .bump-line.is-uncertain .seg { opacity: 0.28; }
+bump-chart .bump-line .node { opacity: 0.4; transition: opacity 0.15s ease; }
+bump-chart .bump-line .node.is-gutter { opacity: 0.3; }
+bump-chart .bump-line .node.is-uncertain { opacity: 0.25; }
 
 /* coins */
 bump-chart .bump-coin { cursor: pointer; }

@@ -12,7 +12,7 @@
 // in a ranked top-tier are preserved from curated.json. Others get an
 // auto-generated shortCode and a deterministic palette color.
 
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -179,18 +179,30 @@ function shortCodeFor(name) {
   return (pick[0] || name).slice(0, 2).toUpperCase();
 }
 
+// Discover real logo files on disk: logos/<id>.<ext>. A joint with a
+// matching file gets a `logo` path; everyone else falls back to the
+// colored circle + shortCode at render time.
+const logoDir = join(ROOT, "logos");
+const logoFor = {};
+for (const f of readdirSync(logoDir)) {
+  const m = f.match(/^(.+)\.(png|jpg|jpeg|svg|webp)$/i);
+  if (m && !f.startsWith("_")) logoFor[m[1]] = `logos/${f}`;
+}
+
 // Build restaurants dict.
 const restaurants = {};
 for (const [id, recs] of byId) {
   const disp = pickDisplay(recs);
   const cur = curated[id] || {};
-  restaurants[id] = {
+  const rec = {
     name: cur.name || disp.name,
     shortCode: cur.shortCode || shortCodeFor(disp.name),
     city: cur.city || disp.city,
     address: cur.address || "",
     color: cur.color || colorFor(id),
   };
+  if (logoFor[id]) rec.logo = logoFor[id];
+  restaurants[id] = rec;
 }
 
 // Build rankings array (one row per year+id), ordered by year then rank.

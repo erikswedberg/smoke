@@ -107,7 +107,7 @@ Research and compile all restaurants + rankings across all 5 editions (2008, 201
 - 2013: Only top 4 officially ranked (Franklin, Snow's, Louie Mueller, Pecan Lodge). Positions 5–50 alphabetical.
 - 2017+: Full top 10 available.
 
-**Status:** Not started
+**Status:** DONE. `data/rankings.json` holds 5 editions, 29 restaurants, 59 ranking rows. Full ranked top 10s for 2017/2021/2025; 2013 top 4 (Franklin #1 ranked, other 3 marked `uncertain`); 2008 Snow's #1 only (gap, per design notes). `js/data.js` provides query helpers (history-of, snapshot, top10Restaurants). Validated: ranks 1–10 complete+unique per modern edition, no orphan refs, no unused records.
 
 ### Phase 2: Logos
 Attempt to find/create small logos for restaurants that have appeared in any top 10 (~25–30 unique restaurants). Generate colored-circle-with-initials fallbacks for the rest.

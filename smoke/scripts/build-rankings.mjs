@@ -154,8 +154,13 @@ for (const r of rows) {
   byId.get(r.id).push(r);
 }
 
-// Curated overrides (colors / shortCodes / addresses) preserved across builds.
+// Curated overrides (shortCodes / addresses) preserved across builds.
 const curated = JSON.parse(readFileSync(join(ROOT, "scripts", "curated.json"), "utf8"));
+
+// Hand-curated line colors derived from each top-10 logo (Franklin turquoise,
+// Snow's red, ...). These override the curated/auto color for charted joints
+// so the bump-chart lines read as the joints' own brand colors.
+const lineColors = JSON.parse(readFileSync(join(ROOT, "scripts", "line-colors.json"), "utf8"));
 
 // Deterministic palette for non-curated joints (warm smoke/bbq tones).
 const PALETTE = [
@@ -199,7 +204,7 @@ for (const [id, recs] of byId) {
     shortCode: cur.shortCode || shortCodeFor(disp.name),
     city: cur.city || disp.city,
     address: cur.address || "",
-    color: cur.color || colorFor(id),
+    color: lineColors[id] || cur.color || colorFor(id),
   };
   if (logoFor[id]) rec.logo = logoFor[id];
   restaurants[id] = rec;

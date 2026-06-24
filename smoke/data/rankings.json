@@ -231,7 +231,7 @@
       "shortCode": "SN",
       "city": "Lexington",
       "address": "516 Main St, Lexington, TX 78947",
-      "color": "#C8462C",
+      "color": "#c2342c",
       "logo": "logos/snows-bbq.png"
     },
     "casstevens-cash-and-carry": {
@@ -372,7 +372,7 @@
       "shortCode": "LM",
       "city": "Taylor",
       "address": "206 W 2nd St, Taylor, TX 76574",
-      "color": "#8C6239",
+      "color": "#cf1322",
       "logo": "logos/louie-mueller.webp"
     },
     "taylor-cafe": {
@@ -394,7 +394,7 @@
       "shortCode": "FR",
       "city": "Austin",
       "address": "900 E 11th St, Austin, TX 78702",
-      "color": "#E85D3A",
+      "color": "#1fb6b6",
       "logo": "logos/franklin-barbecue.webp"
     },
     "pecan-lodge": {
@@ -402,7 +402,7 @@
       "shortCode": "PL",
       "city": "Dallas",
       "address": "2702 Main St, Dallas, TX 75226",
-      "color": "#A0522D",
+      "color": "#6b6f54",
       "logo": "logos/pecan-lodge.png"
     },
     "the-original-willies-bar-b-que": {
@@ -606,7 +606,7 @@
       "shortCode": "CO",
       "city": "Spring",
       "address": "26608 Keith St, Spring, TX 77373",
-      "color": "#7E5109",
+      "color": "#4a3526",
       "logo": "logos/corkscrew-bbq.png"
     },
     "big-boys-bar-b-que": {
@@ -628,7 +628,7 @@
       "shortCode": "CA",
       "city": "Dallas",
       "address": "13628 Gamma Rd, Dallas, TX 75244",
-      "color": "#6B8E23",
+      "color": "#1a2330",
       "logo": "logos/cattleack-barbeque.png"
     },
     "bodacious-bbq": {
@@ -636,7 +636,7 @@
       "shortCode": "BO",
       "city": "Longview",
       "address": "1227 E Marshall Ave, Longview, TX 75601",
-      "color": "#B7950B",
+      "color": "#f5c518",
       "logo": "logos/bodacious-bbq.png"
     },
     "tejas-chocolate": {
@@ -644,7 +644,7 @@
       "shortCode": "TC",
       "city": "Tomball",
       "address": "200 N Elm St, Tomball, TX 77375",
-      "color": "#5D4037",
+      "color": "#7a4a2b",
       "logo": "logos/tejas-chocolate.jpg"
     },
     "micklethwait": {
@@ -652,7 +652,7 @@
       "shortCode": "MI",
       "city": "Austin",
       "address": "1309 Rosewood Ave, Austin, TX 78702",
-      "color": "#D4A017",
+      "color": "#e8902a",
       "logo": "logos/micklethwait.png"
     },
     "evie-maes": {
@@ -660,7 +660,7 @@
       "shortCode": "EM",
       "city": "Wolfforth",
       "address": "217 US-62, Wolfforth, TX 79382",
-      "color": "#2E8B57",
+      "color": "#2a2a2a",
       "logo": "logos/evie-maes.jpg"
     },
     "truth-bbq": {
@@ -668,7 +668,7 @@
       "shortCode": "TR",
       "city": "Houston",
       "address": "110 S Heights Blvd, Houston, TX 77007",
-      "color": "#1F8A8A",
+      "color": "#14a0a0",
       "logo": "logos/truth-bbq.png"
     },
     "stillwater-barbeque": {
@@ -837,7 +837,7 @@
       "shortCode": "GO",
       "city": "Fort Worth",
       "address": "4645 Dick Price Rd, Fort Worth, TX 76140",
-      "color": "#E0A92E",
+      "color": "#f2b705",
       "logo": "logos/goldees-barbecue.jpg"
     },
     "interstellar-bbq": {
@@ -845,7 +845,7 @@
       "shortCode": "IS",
       "city": "Austin",
       "address": "12233 RM 620 N, Austin, TX 78750",
-      "color": "#3D5AAE",
+      "color": "#e8722c",
       "logo": "logos/interstellar-bbq.png"
     },
     "burnt-bean-co": {
@@ -853,7 +853,7 @@
       "shortCode": "BB",
       "city": "Seguin",
       "address": "108 S Austin St, Seguin, TX 78155",
-      "color": "#7B341E",
+      "color": "#b8924a",
       "logo": "logos/burnt-bean-co.png"
     },
     "leroy-and-lewis": {
@@ -861,7 +861,7 @@
       "shortCode": "LL",
       "city": "Austin",
       "address": "121 Pickle Rd, Austin, TX 78704",
-      "color": "#566573",
+      "color": "#13395e",
       "logo": "logos/leroy-and-lewis.png"
     },
     "panther-city-bbq": {
@@ -869,7 +869,7 @@
       "shortCode": "PC",
       "city": "Fort Worth",
       "address": "201 E Hattie St, Fort Worth, TX 76104",
-      "color": "#9B59B6",
+      "color": "#111111",
       "logo": "logos/panther-city-bbq.png"
     },
     "1701-barbecue": {
@@ -926,7 +926,7 @@
       "shortCode": "DA",
       "city": "Aledo",
       "address": "10996 FM Road 1187, Aledo, TX 76008",
-      "color": "#AF601A",
+      "color": "#2d3a57",
       "logo": "logos/daynes-craft-bbq.jpg"
     },
     "desert-oak-barbecue": {
@@ -983,7 +983,7 @@
       "shortCode": "LV",
       "city": "Port Lavaca",
       "address": "201 N Virginia St, Port Lavaca, TX 77979",
-      "color": "#2471A3",
+      "color": "#3bb1c4",
       "logo": "logos/lavaca-bbq.png"
     },
     "ljs-bbq": {
@@ -1278,7 +1278,7 @@
       "shortCode": "RB",
       "city": "Port Neches",
       "address": "1601 Magnolia Ave, Port Neches, TX 77651",
-      "color": "#CB4335",
+      "color": "#c0392b",
       "logo": "logos/redbird-bbq.png"
     },
     "gws-bbq": {
@@ -1286,7 +1286,7 @@
       "shortCode": "GW",
       "city": "San Juan",
       "address": "San Juan, TX 78589",
-      "color": "#117A65",
+      "color": "#d63b30",
       "logo": "logos/gws-bbq.png"
     },
     "jays-bbq-shack": {

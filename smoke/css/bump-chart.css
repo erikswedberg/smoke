@@ -1,39 +1,61 @@
-/* <bump-chart> — D3/SVG owns the inside. Clean placeholder for Phase 3. */
+/* <bump-chart> — D3 owns the SVG. Clean white plot; color only in the lines. */
 
 bump-chart { display: block; }
 
-bump-chart .bump-chart-container {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  min-height: 14rem;
+bump-chart .bump-chart-container { width: 100%; }
+bump-chart .bump-svg { display: block; overflow: visible; }
+
+/* grid */
+bump-chart .bump-grid line { stroke: var(--line); stroke-width: 1; }
+bump-chart .bump-rank-label {
+  fill: var(--ink-faint); font-size: 11px; text-anchor: end;
+  font-variant-numeric: tabular-nums;
 }
-bump-chart .bump-chart-container.is-placeholder {
-  display: grid;
-  gap: 1rem;
-  place-content: center;
-  text-align: center;
-}
-bump-chart .bump-chart__note { margin: 0; color: var(--ink-dim); max-width: 50ch; }
-bump-chart .bump-chart__note span {
-  display: block; color: var(--ink-faint); font-size: 0.72rem;
-  letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.4rem;
+bump-chart .bump-year-label {
+  fill: var(--ink-dim); font-size: 12px; font-weight: 700; text-anchor: middle;
+  font-variant-numeric: tabular-nums; letter-spacing: 0.02em;
 }
 
-bump-chart .bump-chart__preview {
-  display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;
-  list-style: none; margin: 0; padding: 0;
+/* gutter */
+bump-chart .bump-gutter { fill: var(--gutter-bg); }
+bump-chart .bump-gutter-label {
+  fill: var(--ink-faint); font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.08em; text-anchor: start;
 }
-bump-chart .bump-chart__preview li {
-  display: flex; align-items: center; gap: 0.4rem;
-  border: 1px solid var(--line);
-  border-radius: 999px; padding: 0.2rem 0.7rem 0.2rem 0.25rem;
-  font-size: 0.78rem; color: var(--ink-dim);
+
+/* lines */
+bump-chart .bump-line .seg {
+  stroke-width: 2.5;
+  opacity: 0.85;
+  transition: opacity 0.15s ease, stroke-width 0.15s ease;
 }
-bump-chart .bump-chart__preview li img,
-bump-chart .bump-chart__preview li span {
-  width: 24px; height: 24px; border-radius: 50%;
-  background: var(--coin, var(--smoke)); object-fit: cover;
-  display: grid; place-items: center;
-  font-weight: 700; font-size: 0.6rem; color: #fff;
+bump-chart .bump-line.is-uncertain .seg { stroke-dasharray: 4 4; opacity: 0.6; }
+bump-chart .bump-line .node { opacity: 0.85; transition: opacity 0.15s ease; }
+bump-chart .bump-line .node.is-gutter { opacity: 0.5; }
+bump-chart .bump-line .node.is-uncertain { opacity: 0.45; }
+
+/* coins */
+bump-chart .bump-coin { cursor: pointer; }
+bump-chart .coin-bg { opacity: 1; }
+bump-chart .coin-ring { stroke: #fff; stroke-width: 2; }
+bump-chart .coin-code {
+  fill: #fff; font-size: 11px; font-weight: 700; text-anchor: middle;
+  text-shadow: 0 0 2px rgba(0,0,0,.4);
 }
+
+/* name tags */
+bump-chart .bump-name {
+  fill: var(--ink); font-size: 12px; font-weight: 600;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+/* final-year tags always shown; fallen-joint tags only on hover */
+bump-chart .bump-name.is-fallen { opacity: 0; }
+bump-chart .bump-line.is-active .bump-name.is-fallen { opacity: 1; }
+
+/* hover isolation: dim everyone, spotlight the active line */
+bump-chart .bump-svg.has-highlight .bump-line.is-dimmed { opacity: 0.12; }
+bump-chart .bump-svg.has-highlight .bump-line.is-active .seg { stroke-width: 4; opacity: 1; }
+bump-chart .bump-svg.has-highlight .bump-line.is-active .node { opacity: 1; }
+bump-chart .bump-svg.has-highlight .bump-line.is-dimmed .bump-name { opacity: 0; }
+bump-chart .bump-coin { transition: opacity 0.15s ease; }

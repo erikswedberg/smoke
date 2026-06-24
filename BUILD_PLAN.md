@@ -107,7 +107,11 @@ Research and compile all restaurants + rankings across all 5 editions (2008, 201
 - 2013: Only top 4 officially ranked (Franklin, Snow's, Louie Mueller, Pecan Lodge). Positions 5–50 alphabetical.
 - 2017+: Full top 10 available.
 
-**Status:** DONE. `data/rankings.json` holds 5 editions, 29 restaurants, 59 ranking rows. Full ranked top 10s for 2017/2021/2025; 2013 top 4 (Franklin #1 ranked, other 3 marked `uncertain`); 2008 Snow's #1 only (gap, per design notes). `js/data.js` provides query helpers (history-of, snapshot, top10Restaurants). Validated: ranks 1–10 complete+unique per modern edition, no orphan refs, no unused records.
+**Status:** DONE (full top-100 roster). `data/rankings.json` holds 5 editions, **217 restaurants, 350 ranking rows** — every joint on every list since 2008, including the 50 honorable mentions each for 2021 & 2025. Splits: 2008 50, 2013 50, 2017 50, 2021 100, 2025 100. Full ranked top 10s for 2017/2021/2025; 2013 top 4 (Franklin #1, other 3 `uncertain`); 2008 Snow's #1 only, rest `uncertain` (gap per design notes).
+
+Per-edition raw rosters archived under `data/_research/*.json` (provenance). The canonical file is generated deterministically by `scripts/build-rankings.mjs`, which resolves cross-edition identity (name/city variants → stable ids) via an explicit, auditable UNIFY/DISAMBIGUATE table, and merges curated colors/shortCodes/addresses from `scripts/curated.json`. **To regenerate: `node scripts/build-rankings.mjs`.** 29 same-joint merges (incl. relocations: Truth Brenham→Houston, Dayne's Fort Worth→Aledo, Cattleack Dallas→Farmers Branch); Bodacious Longview vs Hallsville kept distinct.
+
+Validated: ranks 1–10 complete+unique per modern edition, no orphan refs, no unused records, no duplicate (year,id) rows, every record has all fields. 20 distinct joints have appeared in a ranked top 10 (the bump-chart lines); 144 distinct cities for the 11–50 grid. `js/data.js` query helpers (history-of, snapshot, top10Restaurants) unchanged and verified against the expanded data.
 
 ### Phase 2: Logos
 Attempt to find/create small logos for restaurants that have appeared in any top 10 (~25–30 unique restaurants). Generate colored-circle-with-initials fallbacks for the rest.

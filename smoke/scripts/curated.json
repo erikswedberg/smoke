@@ -1,0 +1,205 @@
+{
+  "snows-bbq": {
+    "name": "Snow's BBQ",
+    "shortCode": "SN",
+    "city": "Lexington",
+    "address": "516 Main St, Lexington, TX 78947",
+    "color": "#C8462C"
+  },
+  "franklin-barbecue": {
+    "name": "Franklin Barbecue",
+    "shortCode": "FR",
+    "city": "Austin",
+    "address": "900 E 11th St, Austin, TX 78702",
+    "color": "#E85D3A"
+  },
+  "louie-mueller": {
+    "name": "Louie Mueller Barbecue",
+    "shortCode": "LM",
+    "city": "Taylor",
+    "address": "206 W 2nd St, Taylor, TX 76574",
+    "color": "#8C6239"
+  },
+  "pecan-lodge": {
+    "name": "Pecan Lodge",
+    "shortCode": "PL",
+    "city": "Dallas",
+    "address": "2702 Main St, Dallas, TX 75226",
+    "color": "#A0522D"
+  },
+  "cattleack-barbeque": {
+    "name": "Cattleack Barbeque",
+    "shortCode": "CA",
+    "city": "Dallas",
+    "address": "13628 Gamma Rd, Dallas, TX 75244",
+    "color": "#6B8E23"
+  },
+  "bodacious-bbq": {
+    "name": "Bodacious Bar-B-Q",
+    "shortCode": "BO",
+    "city": "Longview",
+    "address": "1227 E Marshall Ave, Longview, TX 75601",
+    "color": "#B7950B"
+  },
+  "tejas-chocolate": {
+    "name": "Tejas Chocolate + Barbecue",
+    "shortCode": "TC",
+    "city": "Tomball",
+    "address": "200 N Elm St, Tomball, TX 77375",
+    "color": "#5D4037"
+  },
+  "corkscrew-bbq": {
+    "name": "CorkScrew BBQ",
+    "shortCode": "CO",
+    "city": "Spring",
+    "address": "26608 Keith St, Spring, TX 77373",
+    "color": "#7E5109"
+  },
+  "micklethwait": {
+    "name": "Micklethwait Craft Meats",
+    "shortCode": "MI",
+    "city": "Austin",
+    "address": "1309 Rosewood Ave, Austin, TX 78702",
+    "color": "#D4A017"
+  },
+  "evie-maes": {
+    "name": "Evie Mae's Pit Barbecue",
+    "shortCode": "EM",
+    "city": "Wolfforth",
+    "address": "217 US-62, Wolfforth, TX 79382",
+    "color": "#2E8B57"
+  },
+  "truth-bbq": {
+    "name": "Truth BBQ",
+    "shortCode": "TR",
+    "city": "Houston",
+    "address": "110 S Heights Blvd, Houston, TX 77007",
+    "color": "#1F8A8A"
+  },
+  "goldees-barbecue": {
+    "name": "Goldee's Barbecue",
+    "shortCode": "GO",
+    "city": "Fort Worth",
+    "address": "4645 Dick Price Rd, Fort Worth, TX 76140",
+    "color": "#E0A92E"
+  },
+  "interstellar-bbq": {
+    "name": "InterStellar BBQ",
+    "shortCode": "IS",
+    "city": "Austin",
+    "address": "12233 RM 620 N, Austin, TX 78750",
+    "color": "#3D5AAE"
+  },
+  "burnt-bean-co": {
+    "name": "Burnt Bean Co.",
+    "shortCode": "BB",
+    "city": "Seguin",
+    "address": "108 S Austin St, Seguin, TX 78155",
+    "color": "#7B341E"
+  },
+  "leroy-and-lewis": {
+    "name": "LeRoy and Lewis Barbecue",
+    "shortCode": "LL",
+    "city": "Austin",
+    "address": "121 Pickle Rd, Austin, TX 78704",
+    "color": "#566573"
+  },
+  "panther-city-bbq": {
+    "name": "Panther City BBQ",
+    "shortCode": "PC",
+    "city": "Fort Worth",
+    "address": "201 E Hattie St, Fort Worth, TX 76104",
+    "color": "#9B59B6"
+  },
+  "redbird-bbq": {
+    "name": "Redbird BBQ",
+    "shortCode": "RB",
+    "city": "Port Neches",
+    "address": "1601 Magnolia Ave, Port Neches, TX 77651",
+    "color": "#CB4335"
+  },
+  "gws-bbq": {
+    "name": "GW's BBQ",
+    "shortCode": "GW",
+    "city": "San Juan",
+    "address": "San Juan, TX 78589",
+    "color": "#117A65"
+  },
+  "daynes-craft-bbq": {
+    "name": "Dayne's Craft Barbecue",
+    "shortCode": "DA",
+    "city": "Aledo",
+    "address": "10996 FM Road 1187, Aledo, TX 76008",
+    "color": "#AF601A"
+  },
+  "lavaca-bbq": {
+    "name": "LaVaca BBQ",
+    "shortCode": "LV",
+    "city": "Port Lavaca",
+    "address": "201 N Virginia St, Port Lavaca, TX 77979",
+    "color": "#2471A3"
+  },
+  "killens-bbq": {
+    "name": "Killen's Barbecue",
+    "shortCode": "KI",
+    "city": "Pearland",
+    "address": "3613 E Broadway St, Pearland, TX 77581",
+    "color": "#922B21"
+  },
+  "la-barbecue": {
+    "name": "La Barbecue",
+    "shortCode": "LA",
+    "city": "Austin",
+    "address": "2027 E Cesar Chavez St, Austin, TX 78702",
+    "color": "#D68910"
+  },
+  "valentinas": {
+    "name": "Valentina's Tex Mex BBQ",
+    "shortCode": "VA",
+    "city": "Austin",
+    "address": "11500 Menchaca Rd, Austin, TX 78748",
+    "color": "#196F3D"
+  },
+  "2m-smokehouse": {
+    "name": "2M Smokehouse",
+    "shortCode": "2M",
+    "city": "San Antonio",
+    "address": "2731 S WW White Rd, San Antonio, TX 78222",
+    "color": "#B03A2E"
+  },
+  "blood-bros": {
+    "name": "Blood Bros. BBQ",
+    "shortCode": "BL",
+    "city": "Bellaire",
+    "address": "5425 Bellaire Blvd, Bellaire, TX 77401",
+    "color": "#7D3C98"
+  },
+  "feges-bbq": {
+    "name": "Feges BBQ",
+    "shortCode": "FE",
+    "city": "Houston",
+    "address": "3 Greenway Plaza, Houston, TX 77046",
+    "color": "#148F77"
+  },
+  "terry-blacks": {
+    "name": "Terry Black's Barbecue",
+    "shortCode": "TB",
+    "city": "Dallas",
+    "address": "3025 Main St, Dallas, TX 75226",
+    "color": "#CA6F1E"
+  },
+  "heim-bbq": {
+    "name": "Heim Barbecue",
+    "shortCode": "HE",
+    "city": "Fort Worth",
+    "address": "1109 W Magnolia Ave, Fort Worth, TX 76104",
+    "color": "#A93226"
+  },
+  "distant-relatives": {
+    "name": "Distant Relatives",
+    "shortCode": "DR",
+    "city": "Austin",
+    "address": "3901 Promontory Point Dr, Austin, TX 78744",
+    "color": "#1ABC9C"
+  }
+}

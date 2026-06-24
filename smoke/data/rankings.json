@@ -1,114 +1,3347 @@
 {
   "meta": {
     "title": "Texas Monthly Top 50 BBQ — The Bump Chart",
-    "source": "Texas Monthly quadrennial Top 50 BBQ lists (2008, 2013, 2017, 2021, 2025), cross-checked against CultureMap, PaperCity, WFAA, Texas BBQ Posse, and contemporaneous reporting.",
-    "notes": "rank is present only when the published edition ranked that position. 2013 ranked only a top 4 (Franklin #1; the other three listed alphabetically). 2008 published a full ranked list but only Snow's #1 is reliably recoverable from free sources — others omitted rather than guessed."
+    "source": "Texas Monthly quadrennial Top 50 BBQ lists (2008, 2013, 2017, 2021, 2025), each compiled from the published edition and cross-checked against CultureMap, PaperCity, WFAA, Texas BBQ Posse, feastio, and contemporaneous reporting. Per-edition rosters archived under data/_research/.",
+    "notes": "rank is present only when the published edition ranked that position. 2008 listed all 50 alphabetically by city with only Snow's known at #1 (others uncertain). 2013 ranked only the top 4 (Franklin #1; the other three uncertain). 2017 ranked a full top 10. 2021 and 2025 ranked a top 10, listed 40 more (top50), and added 50 honorable mentions each. Same-joint name/city variants are unified via scripts/build-rankings.mjs; chains appearing in different cities are treated as one brand except Bodacious (Longview vs Hallsville)."
   },
-
   "editions": [
-    { "year": 2008, "rankedDepth": 1,  "honorableMentions": false, "note": "Snow's explodes onto the scene. Franklin hadn't opened yet. Full ranks #2-50 not reliably sourced." },
-    { "year": 2013, "rankedDepth": 4,  "honorableMentions": false, "note": "Daniel Vaughn's first list as BBQ editor. Only the top 4 were ranked; the rest alphabetical." },
-    { "year": 2017, "rankedDepth": 10, "honorableMentions": false, "note": "Snow's reclaims #1. First edition with a full ranked top 10." },
-    { "year": 2021, "rankedDepth": 10, "honorableMentions": true,  "note": "Goldee's, a young Fort Worth upstart, dethrones the legends. First edition with honorable mentions." },
-    { "year": 2025, "rankedDepth": 10, "honorableMentions": true,  "note": "Burnt Bean Co. takes #1. Snow's and Franklin both drop out of the top 10 for the first time ever." }
+    {
+      "year": 2008,
+      "rankedDepth": 1,
+      "honorableMentions": false,
+      "note": "Snow's explodes onto the scene at #1. Franklin hadn't opened yet. Listed alphabetically; ranks #2-50 not published."
+    },
+    {
+      "year": 2013,
+      "rankedDepth": 4,
+      "honorableMentions": false,
+      "note": "Daniel Vaughn's first list as BBQ editor. Only the top 4 ranked (Franklin #1); the rest alphabetical."
+    },
+    {
+      "year": 2017,
+      "rankedDepth": 10,
+      "honorableMentions": false,
+      "note": "Snow's reclaims #1. First edition with a full ranked top 10."
+    },
+    {
+      "year": 2021,
+      "rankedDepth": 10,
+      "honorableMentions": true,
+      "note": "Goldee's, a young Fort Worth upstart, dethrones the legends. First edition with 50 honorable mentions."
+    },
+    {
+      "year": 2025,
+      "rankedDepth": 10,
+      "honorableMentions": true,
+      "note": "Burnt Bean Co. takes #1. Snow's and Franklin both drop out of the top 10 for the first time ever."
+    }
   ],
-
   "restaurants": {
-    "snows-bbq":         { "name": "Snow's BBQ",            "shortCode": "SN", "city": "Lexington",      "address": "516 Main St, Lexington, TX 78947",        "color": "#C8462C" },
-    "franklin-barbecue": { "name": "Franklin Barbecue",     "shortCode": "FR", "city": "Austin",         "address": "900 E 11th St, Austin, TX 78702",         "color": "#E85D3A" },
-    "louie-mueller":     { "name": "Louie Mueller Barbecue","shortCode": "LM", "city": "Taylor",         "address": "206 W 2nd St, Taylor, TX 76574",          "color": "#8C6239" },
-    "pecan-lodge":       { "name": "Pecan Lodge",           "shortCode": "PL", "city": "Dallas",         "address": "2702 Main St, Dallas, TX 75226",          "color": "#A0522D" },
-    "cattleack-barbeque":{ "name": "Cattleack Barbeque",    "shortCode": "CA", "city": "Dallas",         "address": "13628 Gamma Rd, Dallas, TX 75244",        "color": "#6B8E23" },
-    "bodacious-bbq":     { "name": "Bodacious Bar-B-Q",     "shortCode": "BO", "city": "Longview",       "address": "1227 E Marshall Ave, Longview, TX 75601", "color": "#B7950B" },
-    "tejas-chocolate":   { "name": "Tejas Chocolate + Barbecue", "shortCode": "TC", "city": "Tomball",   "address": "200 N Elm St, Tomball, TX 77375",         "color": "#5D4037" },
-    "corkscrew-bbq":     { "name": "CorkScrew BBQ",         "shortCode": "CO", "city": "Spring",         "address": "26608 Keith St, Spring, TX 77373",        "color": "#7E5109" },
-    "micklethwait":      { "name": "Micklethwait Craft Meats","shortCode": "MI","city": "Austin",        "address": "1309 Rosewood Ave, Austin, TX 78702",     "color": "#D4A017" },
-    "evie-maes":         { "name": "Evie Mae's Pit Barbecue","shortCode": "EM","city": "Wolfforth",      "address": "217 US-62, Wolfforth, TX 79382",          "color": "#2E8B57" },
-    "truth-bbq":         { "name": "Truth BBQ",             "shortCode": "TR", "city": "Houston",        "address": "110 S Heights Blvd, Houston, TX 77007",   "color": "#1F8A8A" },
-    "goldees-barbecue":  { "name": "Goldee's Barbecue",     "shortCode": "GO", "city": "Fort Worth",     "address": "4645 Dick Price Rd, Fort Worth, TX 76140","color": "#E0A92E" },
-    "interstellar-bbq":  { "name": "InterStellar BBQ",      "shortCode": "IS", "city": "Austin",         "address": "12233 RM 620 N, Austin, TX 78750",        "color": "#3D5AAE" },
-    "burnt-bean-co":     { "name": "Burnt Bean Co.",        "shortCode": "BB", "city": "Seguin",         "address": "108 S Austin St, Seguin, TX 78155",       "color": "#7B341E" },
-    "leroy-and-lewis":   { "name": "LeRoy and Lewis Barbecue","shortCode": "LL","city": "Austin",        "address": "121 Pickle Rd, Austin, TX 78704",         "color": "#566573" },
-    "panther-city-bbq":  { "name": "Panther City BBQ",      "shortCode": "PC", "city": "Fort Worth",     "address": "201 E Hattie St, Fort Worth, TX 76104",   "color": "#9B59B6" },
-    "redbird-bbq":       { "name": "Redbird BBQ",           "shortCode": "RB", "city": "Port Neches",    "address": "1601 Magnolia Ave, Port Neches, TX 77651","color": "#CB4335" },
-    "gws-bbq":           { "name": "GW's BBQ",              "shortCode": "GW", "city": "San Juan",       "address": "San Juan, TX 78589",                      "color": "#117A65" },
-    "daynes-craft-bbq":  { "name": "Dayne's Craft Barbecue","shortCode": "DA","city": "Aledo",           "address": "10996 FM Road 1187, Aledo, TX 76008",     "color": "#AF601A" },
-    "lavaca-bbq":        { "name": "LaVaca BBQ",            "shortCode": "LV", "city": "Port Lavaca",    "address": "201 N Virginia St, Port Lavaca, TX 77979","color": "#2471A3" },
-
-    "killens-bbq":       { "name": "Killen's Barbecue",     "shortCode": "KI", "city": "Pearland",       "address": "3613 E Broadway St, Pearland, TX 77581",  "color": "#922B21" },
-    "la-barbecue":       { "name": "La Barbecue",           "shortCode": "LA", "city": "Austin",         "address": "2027 E Cesar Chavez St, Austin, TX 78702","color": "#D68910" },
-    "valentinas":        { "name": "Valentina's Tex Mex BBQ","shortCode": "VA","city": "Austin",         "address": "11500 Menchaca Rd, Austin, TX 78748",     "color": "#196F3D" },
-    "2m-smokehouse":     { "name": "2M Smokehouse",         "shortCode": "2M", "city": "San Antonio",    "address": "2731 S WW White Rd, San Antonio, TX 78222","color": "#B03A2E" },
-    "blood-bros":        { "name": "Blood Bros. BBQ",       "shortCode": "BL", "city": "Bellaire",       "address": "5425 Bellaire Blvd, Bellaire, TX 77401",  "color": "#7D3C98" },
-    "feges-bbq":         { "name": "Feges BBQ",             "shortCode": "FE", "city": "Houston",        "address": "3 Greenway Plaza, Houston, TX 77046",     "color": "#148F77" },
-    "terry-blacks":      { "name": "Terry Black's Barbecue","shortCode": "TB", "city": "Dallas",         "address": "3025 Main St, Dallas, TX 75226",          "color": "#CA6F1E" },
-    "heim-bbq":          { "name": "Heim Barbecue",         "shortCode": "HE", "city": "Fort Worth",     "address": "1109 W Magnolia Ave, Fort Worth, TX 76104","color": "#A93226" },
-    "distant-relatives": { "name": "Distant Relatives",     "shortCode": "DR", "city": "Austin",         "address": "3901 Promontory Point Dr, Austin, TX 78744","color": "#1ABC9C" }
+    "harolds-pit-bar-b-q": {
+      "name": "Harold's Pit Bar-B-Q",
+      "shortCode": "HS",
+      "city": "Abilene",
+      "address": "",
+      "color": "#CB4335"
+    },
+    "cripple-creek-b-b-q": {
+      "name": "Cripple Creek B-B-Q",
+      "shortCode": "CC",
+      "city": "Athens",
+      "address": "",
+      "color": "#566573"
+    },
+    "lamberts-downtown-barbecue": {
+      "name": "Lamberts Downtown Barbecue",
+      "shortCode": "LD",
+      "city": "Austin",
+      "address": "",
+      "color": "#3D5AAE"
+    },
+    "manns-smokehouse-bar-b-que": {
+      "name": "Mann's Smokehouse Bar-B-Que",
+      "shortCode": "MS",
+      "city": "Austin",
+      "address": "",
+      "color": "#1ABC9C"
+    },
+    "willy-rays-bar-b-q-and-grill": {
+      "name": "Willy Ray's Bar-B-Q and Grill",
+      "shortCode": "WR",
+      "city": "Beaumont",
+      "address": "",
+      "color": "#8C6239"
+    },
+    "schoepfs": {
+      "name": "Schoepf's BBQ",
+      "shortCode": "SS",
+      "city": "Belton",
+      "address": "",
+      "color": "#D68910"
+    },
+    "bertram-smoke-haus": {
+      "name": "Bertram Smoke Haus",
+      "shortCode": "BS",
+      "city": "Bertram",
+      "address": "",
+      "color": "#9B59B6"
+    },
+    "colemans-barbeque": {
+      "name": "Coleman's Barbeque",
+      "shortCode": "CS",
+      "city": "Clarksville",
+      "address": "",
+      "color": "#7D3C98"
+    },
+    "thompsons-bbq": {
+      "name": "Thompson's BBQ",
+      "shortCode": "TS",
+      "city": "Crockett",
+      "address": "",
+      "color": "#7E5109"
+    },
+    "bakers-ribs": {
+      "name": "Baker's Ribs",
+      "shortCode": "BS",
+      "city": "Dallas",
+      "address": "",
+      "color": "#148F77"
+    },
+    "tcs-ponderosa": {
+      "name": "TC's Ponderosa",
+      "shortCode": "TS",
+      "city": "Dickens",
+      "address": "",
+      "color": "#B7950B"
+    },
+    "austins-bbq-and-catering": {
+      "name": "Austin's BBQ and Catering",
+      "shortCode": "AS",
+      "city": "Eagle Lake",
+      "address": "",
+      "color": "#A93226"
+    },
+    "vinceks-smokehouse": {
+      "name": "Vincek's Smokehouse",
+      "shortCode": "VS",
+      "city": "East Bernard",
+      "address": "",
+      "color": "#8C6239"
+    },
+    "bubbas-bar-b-q": {
+      "name": "Bubba's Bar-B-Q",
+      "shortCode": "BS",
+      "city": "Ennis",
+      "address": "",
+      "color": "#CA6F1E"
+    },
+    "mcmillans-bar-b-q": {
+      "name": "McMillan's Bar-B-Q",
+      "shortCode": "MS",
+      "city": "Fannin",
+      "address": "",
+      "color": "#148F77"
+    },
+    "cousins": {
+      "name": "Cousin's Bar-B-Q",
+      "shortCode": "CS",
+      "city": "Fort Worth",
+      "address": "",
+      "color": "#6B8E23"
+    },
+    "city-meat-market": {
+      "name": "City Meat Market",
+      "shortCode": "CM",
+      "city": "Giddings",
+      "address": "",
+      "color": "#AF601A"
+    },
+    "smokey-joes-bar-b-que-and-grill": {
+      "name": "Smokey Joe's Bar-B-Que and Grill",
+      "shortCode": "SJ",
+      "city": "Harlingen",
+      "address": "",
+      "color": "#196F3D"
+    },
+    "mcbees-bar-b-q": {
+      "name": "McBee's Bar-B-Q",
+      "shortCode": "MS",
+      "city": "Hondo",
+      "address": "",
+      "color": "#1F8A8A"
+    },
+    "burns-bar-b-que-cooking-and-catering": {
+      "name": "Burns Bar-B-Que Cooking and Catering",
+      "shortCode": "BC",
+      "city": "Houston",
+      "address": "",
+      "color": "#B7950B"
+    },
+    "virgies-bar-b-que": {
+      "name": "Virgie's Bar-B-Que",
+      "shortCode": "VS",
+      "city": "Houston",
+      "address": "",
+      "color": "#1F8A8A"
+    },
+    "new-zion-bar-b-q": {
+      "name": "New Zion Bar-B-Q",
+      "shortCode": "NZ",
+      "city": "Huntsville",
+      "address": "",
+      "color": "#CB4335"
+    },
+    "stacys": {
+      "name": "Stacy's",
+      "shortCode": "SS",
+      "city": "Jacksonville",
+      "address": "",
+      "color": "#A93226"
+    },
+    "buzzies": {
+      "name": "Buzzie's Bar-B-Q",
+      "shortCode": "BS",
+      "city": "Kerrville",
+      "address": "",
+      "color": "#AF601A"
+    },
+    "country-tavern": {
+      "name": "Country Tavern",
+      "shortCode": "CT",
+      "city": "Kilgore",
+      "address": "",
+      "color": "#5D4037"
+    },
+    "carolines-quality-and-quantity-bar-b-que": {
+      "name": "Caroline's Quality and Quantity Bar-B-Que",
+      "shortCode": "CS",
+      "city": "Kountze",
+      "address": "",
+      "color": "#D68910"
+    },
+    "big-daddys-roadhouse-bbq": {
+      "name": "Big Daddy's Roadhouse BBQ",
+      "shortCode": "BD",
+      "city": "Lavon",
+      "address": "",
+      "color": "#148F77"
+    },
+    "snows-bbq": {
+      "name": "Snow's BBQ",
+      "shortCode": "SN",
+      "city": "Lexington",
+      "address": "516 Main St, Lexington, TX 78947",
+      "color": "#C8462C"
+    },
+    "casstevens-cash-and-carry": {
+      "name": "Casstevens Cash & Carry",
+      "shortCode": "CC",
+      "city": "Lillian",
+      "address": "",
+      "color": "#A93226"
+    },
+    "coopers-old-time-pit-bar-b-que": {
+      "name": "Cooper's Old Time Pit Bar-B-Que",
+      "shortCode": "CS",
+      "city": "Llano",
+      "address": "",
+      "color": "#AF601A"
+    },
+    "kreuz-market": {
+      "name": "Kreuz Market",
+      "shortCode": "KM",
+      "city": "Lockhart",
+      "address": "",
+      "color": "#1F8A8A"
+    },
+    "smittys-market": {
+      "name": "Smitty's Market",
+      "shortCode": "SS",
+      "city": "Lockhart",
+      "address": "",
+      "color": "#A0522D"
+    },
+    "wild-blue-bbq": {
+      "name": "Wild Blue B.B.Q.",
+      "shortCode": "WB",
+      "city": "Los Fresnos",
+      "address": "",
+      "color": "#B03A2E"
+    },
+    "tom-and-bingos": {
+      "name": "Tom & Bingo's Hickory Pit Bar-B-Q",
+      "shortCode": "TB",
+      "city": "Lubbock",
+      "address": "",
+      "color": "#2E8B57"
+    },
+    "city-market": {
+      "name": "City Market",
+      "shortCode": "CM",
+      "city": "Luling",
+      "address": "",
+      "color": "#1F8A8A"
+    },
+    "luling-bar-b-q": {
+      "name": "Luling Bar-B-Q",
+      "shortCode": "LU",
+      "city": "Luling",
+      "address": "",
+      "color": "#922B21"
+    },
+    "whups-boomerang": {
+      "name": "Whup's Boomerang Bar-B-Que",
+      "shortCode": "WS",
+      "city": "Marlin",
+      "address": "",
+      "color": "#6B8E23"
+    },
+    "pappys-bar-bq": {
+      "name": "Pappy's Bar BQ",
+      "shortCode": "PS",
+      "city": "Monahans",
+      "address": "",
+      "color": "#117A65"
+    },
+    "vans-bar-b-q": {
+      "name": "Van's Bar-B-Q",
+      "shortCode": "VS",
+      "city": "Oakville",
+      "address": "",
+      "color": "#D68910"
+    },
+    "baby-js-bar-b-que-and-fish": {
+      "name": "Baby J's Bar-B-Que & Fish",
+      "shortCode": "BJ",
+      "city": "Palestine",
+      "address": "",
+      "color": "#CA6F1E"
+    },
+    "scholl-bros-bar-b-que": {
+      "name": "Scholl Bros. Bar-B-Que",
+      "shortCode": "SB",
+      "city": "Paris",
+      "address": "",
+      "color": "#9B59B6"
+    },
+    "hashknife-on-the-chisholm": {
+      "name": "Hashknife on the Chisholm",
+      "shortCode": "HO",
+      "city": "Peadenville",
+      "address": "",
+      "color": "#7E5109"
+    },
+    "cowpokes": {
+      "name": "Cowpoke's",
+      "shortCode": "CS",
+      "city": "Pearsall",
+      "address": "",
+      "color": "#5D4037"
+    },
+    "the-smokehouse": {
+      "name": "The Smokehouse",
+      "shortCode": "SM",
+      "city": "San Antonio",
+      "address": "",
+      "color": "#A93226"
+    },
+    "longhorn-cattle-company-barbecue-and-steak-restaurant": {
+      "name": "Longhorn Cattle Company Barbecue and Steak Restaurant",
+      "shortCode": "LC",
+      "city": "San Benito",
+      "address": "",
+      "color": "#CB4335"
+    },
+    "oo-smokehouse": {
+      "name": "OO Smokehouse",
+      "shortCode": "OS",
+      "city": "Sherman",
+      "address": "",
+      "color": "#922B21"
+    },
+    "opies-barbecue": {
+      "name": "Opie's Barbecue",
+      "shortCode": "OS",
+      "city": "Spicewood",
+      "address": "",
+      "color": "#6B8E23"
+    },
+    "louie-mueller": {
+      "name": "Louie Mueller Barbecue",
+      "shortCode": "LM",
+      "city": "Taylor",
+      "address": "206 W 2nd St, Taylor, TX 76574",
+      "color": "#8C6239"
+    },
+    "taylor-cafe": {
+      "name": "Taylor Cafe",
+      "shortCode": "TC",
+      "city": "Taylor",
+      "address": "",
+      "color": "#D68910"
+    },
+    "stanleys-famous": {
+      "name": "Stanley's Famous Pit Barbecue",
+      "shortCode": "SS",
+      "city": "Tyler",
+      "address": "",
+      "color": "#D68910"
+    },
+    "franklin-barbecue": {
+      "name": "Franklin Barbecue",
+      "shortCode": "FR",
+      "city": "Austin",
+      "address": "900 E 11th St, Austin, TX 78702",
+      "color": "#E85D3A"
+    },
+    "pecan-lodge": {
+      "name": "Pecan Lodge",
+      "shortCode": "PL",
+      "city": "Dallas",
+      "address": "2702 Main St, Dallas, TX 75226",
+      "color": "#A0522D"
+    },
+    "the-original-willies-bar-b-que": {
+      "name": "The Original Willie's Bar-B-Que",
+      "shortCode": "OW",
+      "city": "Alamo",
+      "address": "",
+      "color": "#AF601A"
+    },
+    "tylers-bbq": {
+      "name": "Tyler's Barbeque",
+      "shortCode": "TS",
+      "city": "Amarillo",
+      "address": "",
+      "color": "#117A65"
+    },
+    "john-mueller-meat-co": {
+      "name": "John Mueller Meat Co.",
+      "shortCode": "JM",
+      "city": "Austin",
+      "address": "",
+      "color": "#B03A2E"
+    },
+    "la-barbecue": {
+      "name": "La Barbecue",
+      "shortCode": "LA",
+      "city": "Austin",
+      "address": "2027 E Cesar Chavez St, Austin, TX 78702",
+      "color": "#D68910"
+    },
+    "stiles-switch": {
+      "name": "Stiles Switch BBQ",
+      "shortCode": "SS",
+      "city": "Austin",
+      "address": "",
+      "color": "#3D5AAE"
+    },
+    "millers-smokehouse": {
+      "name": "Miller's Smokehouse",
+      "shortCode": "MS",
+      "city": "Belton",
+      "address": "",
+      "color": "#6B8E23"
+    },
+    "fargos-pit-bbq": {
+      "name": "Fargo's Pit BBQ",
+      "shortCode": "FS",
+      "city": "Bryan",
+      "address": "",
+      "color": "#922B21"
+    },
+    "brooks-place": {
+      "name": "Brooks' Place",
+      "shortCode": "BP",
+      "city": "Cypress",
+      "address": "",
+      "color": "#CB4335"
+    },
+    "lockhart-smokehouse": {
+      "name": "Lockhart Smokehouse",
+      "shortCode": "LS",
+      "city": "Plano",
+      "address": "",
+      "color": "#196F3D"
+    },
+    "longorias-bbq": {
+      "name": "Longoria's BBQ",
+      "shortCode": "LS",
+      "city": "Fort Worth",
+      "address": "",
+      "color": "#196F3D"
+    },
+    "cranky-franks-barbecue-company": {
+      "name": "Cranky Frank's Barbecue Company",
+      "shortCode": "CF",
+      "city": "Fredericksburg",
+      "address": "",
+      "color": "#922B21"
+    },
+    "leons-worlds-finest-in-and-out-bar-b-que": {
+      "name": "Leon's World's Finest In & Out Bar-B-Que",
+      "shortCode": "LS",
+      "city": "Galveston",
+      "address": "",
+      "color": "#5D4037"
+    },
+    "meshacks": {
+      "name": "Meshack's Bar-Be-Que",
+      "shortCode": "MS",
+      "city": "Garland",
+      "address": "",
+      "color": "#5D4037"
+    },
+    "bartleys-bar-b-q": {
+      "name": "Bartley's Bar-B-Q",
+      "shortCode": "BS",
+      "city": "Grapevine",
+      "address": "",
+      "color": "#117A65"
+    },
+    "bobs-bar-b-que": {
+      "name": "Bob's Bar-B-Que",
+      "shortCode": "BS",
+      "city": "Henderson",
+      "address": "",
+      "color": "#2E8B57"
+    },
+    "gatlins-bbq": {
+      "name": "Gatlin's BBQ",
+      "shortCode": "GS",
+      "city": "Houston",
+      "address": "",
+      "color": "#196F3D"
+    },
+    "billys-old-fashion-bbq": {
+      "name": "Billy's Old Fashion BBQ",
+      "shortCode": "BS",
+      "city": "Jasper",
+      "address": "",
+      "color": "#7D3C98"
+    },
+    "josephs-riverport": {
+      "name": "Joseph's Riverport Bar-B-Cue",
+      "shortCode": "JS",
+      "city": "Jefferson",
+      "address": "",
+      "color": "#CA6F1E"
+    },
+    "hitch-n-post-bbq": {
+      "name": "Hitch-N-Post BBQ",
+      "shortCode": "HN",
+      "city": "Livingston",
+      "address": "",
+      "color": "#566573"
+    },
+    "blacks-barbecue": {
+      "name": "Black's Barbecue",
+      "shortCode": "BS",
+      "city": "Lockhart",
+      "address": "",
+      "color": "#922B21"
+    },
+    "hutchins-bbq": {
+      "name": "Hutchins BBQ",
+      "shortCode": "HU",
+      "city": "McKinney",
+      "address": "",
+      "color": "#1F8A8A"
+    },
+    "kirbys-barbecue": {
+      "name": "Kirby's Barbecue",
+      "shortCode": "KS",
+      "city": "Mexia",
+      "address": "",
+      "color": "#CB4335"
+    },
+    "podys-bbq": {
+      "name": "Pody's BBQ",
+      "shortCode": "PS",
+      "city": "Pecos",
+      "address": "",
+      "color": "#117A65"
+    },
+    "hatfields-bbq-and-blackjacks-beer-garden": {
+      "name": "Hatfield's BBQ & Blackjacks Beer Garden",
+      "shortCode": "HS",
+      "city": "Rockport",
+      "address": "",
+      "color": "#2E8B57"
+    },
+    "the-granary": {
+      "name": "The Granary 'Cue & Brew",
+      "shortCode": "GC",
+      "city": "San Antonio",
+      "address": "",
+      "color": "#CA6F1E"
+    },
+    "two-bros-bbq-market": {
+      "name": "Two Bros. BBQ Market",
+      "shortCode": "TB",
+      "city": "San Antonio",
+      "address": "",
+      "color": "#196F3D"
+    },
+    "hays-co-bbq": {
+      "name": "Hay's County Barbeque",
+      "shortCode": "HS",
+      "city": "San Marcos",
+      "address": "",
+      "color": "#CB4335"
+    },
+    "zimmerhanzels-bbq": {
+      "name": "Zimmerhanzel's BBQ",
+      "shortCode": "ZS",
+      "city": "Smithville",
+      "address": "",
+      "color": "#3D5AAE"
+    },
+    "corkscrew-bbq": {
+      "name": "CorkScrew BBQ",
+      "shortCode": "CO",
+      "city": "Spring",
+      "address": "26608 Keith St, Spring, TX 77373",
+      "color": "#7E5109"
+    },
+    "big-boys-bar-b-que": {
+      "name": "Big Boy's Bar-B-Que",
+      "shortCode": "BB",
+      "city": "Sweetwater",
+      "address": "",
+      "color": "#117A65"
+    },
+    "mumphords-place-bbq": {
+      "name": "Mumphord's Place BBQ",
+      "shortCode": "MS",
+      "city": "Victoria",
+      "address": "",
+      "color": "#2E8B57"
+    },
+    "cattleack-barbeque": {
+      "name": "Cattleack Barbeque",
+      "shortCode": "CA",
+      "city": "Dallas",
+      "address": "13628 Gamma Rd, Dallas, TX 75244",
+      "color": "#6B8E23"
+    },
+    "bodacious-bbq": {
+      "name": "Bodacious Bar-B-Q",
+      "shortCode": "BO",
+      "city": "Longview",
+      "address": "1227 E Marshall Ave, Longview, TX 75601",
+      "color": "#B7950B"
+    },
+    "tejas-chocolate": {
+      "name": "Tejas Chocolate + Barbecue",
+      "shortCode": "TC",
+      "city": "Tomball",
+      "address": "200 N Elm St, Tomball, TX 77375",
+      "color": "#5D4037"
+    },
+    "micklethwait": {
+      "name": "Micklethwait Craft Meats",
+      "shortCode": "MI",
+      "city": "Austin",
+      "address": "1309 Rosewood Ave, Austin, TX 78702",
+      "color": "#D4A017"
+    },
+    "evie-maes": {
+      "name": "Evie Mae's Pit Barbecue",
+      "shortCode": "EM",
+      "city": "Wolfforth",
+      "address": "217 US-62, Wolfforth, TX 79382",
+      "color": "#2E8B57"
+    },
+    "truth-bbq": {
+      "name": "Truth BBQ",
+      "shortCode": "TR",
+      "city": "Houston",
+      "address": "110 S Heights Blvd, Houston, TX 77007",
+      "color": "#1F8A8A"
+    },
+    "stillwater-barbeque": {
+      "name": "Stillwater Barbeque",
+      "shortCode": "SB",
+      "city": "Abilene",
+      "address": "",
+      "color": "#B03A2E"
+    },
+    "freedmens": {
+      "name": "Freedmen's",
+      "shortCode": "FS",
+      "city": "Austin",
+      "address": "",
+      "color": "#2E8B57"
+    },
+    "terry-blacks": {
+      "name": "Terry Black's Barbecue",
+      "shortCode": "TB",
+      "city": "Dallas",
+      "address": "3025 Main St, Dallas, TX 75226",
+      "color": "#CA6F1E"
+    },
+    "valentinas": {
+      "name": "Valentina's Tex Mex BBQ",
+      "shortCode": "VA",
+      "city": "Austin",
+      "address": "11500 Menchaca Rd, Austin, TX 78748",
+      "color": "#196F3D"
+    },
+    "veras-backyard-bar-b-que": {
+      "name": "Vera's Backyard Bar-B-Que",
+      "shortCode": "VS",
+      "city": "Brownsville",
+      "address": "",
+      "color": "#196F3D"
+    },
+    "paynes-bar-b-q-shak": {
+      "name": "Payne's Bar-B-Q Shak",
+      "shortCode": "PS",
+      "city": "Burnet",
+      "address": "",
+      "color": "#B03A2E"
+    },
+    "bbq-on-the-brazos": {
+      "name": "BBQ on the Brazos",
+      "shortCode": "OB",
+      "city": "Cresson",
+      "address": "",
+      "color": "#117A65"
+    },
+    "top-5-bbq": {
+      "name": "Top 5 BBQ",
+      "shortCode": "T5",
+      "city": "DeSoto",
+      "address": "",
+      "color": "#B03A2E"
+    },
+    "4-ts-bar-b-q": {
+      "name": "4-T's Bar-B-Q",
+      "shortCode": "4T",
+      "city": "Forney",
+      "address": "",
+      "color": "#5D4037"
+    },
+    "heim-bbq": {
+      "name": "Heim Barbecue",
+      "shortCode": "HE",
+      "city": "Fort Worth",
+      "address": "1109 W Magnolia Ave, Fort Worth, TX 76104",
+      "color": "#A93226"
+    },
+    "baker-boys-bbq": {
+      "name": "Baker Boys BBQ",
+      "shortCode": "BB",
+      "city": "Gonzales",
+      "address": "",
+      "color": "#D68910"
+    },
+    "rio-grande-grill-bbq-and-tex-mex": {
+      "name": "Rio Grande Grill BBQ & Tex Mex",
+      "shortCode": "RG",
+      "city": "Harlingen",
+      "address": "",
+      "color": "#CB4335"
+    },
+    "blue-moon-bbq": {
+      "name": "Blue Moon BBQ",
+      "shortCode": "BM",
+      "city": "Hearne",
+      "address": "",
+      "color": "#A0522D"
+    },
+    "heavys-bar-b-que": {
+      "name": "Heavy's Bar-B-Que",
+      "shortCode": "HS",
+      "city": "Hondo",
+      "address": "",
+      "color": "#148F77"
+    },
+    "pinkertons": {
+      "name": "Pinkerton's Barbecue",
+      "shortCode": "PS",
+      "city": "Houston",
+      "address": "",
+      "color": "#7E5109"
+    },
+    "the-pit-room": {
+      "name": "The Pit Room",
+      "shortCode": "RO",
+      "city": "Houston",
+      "address": "",
+      "color": "#9B59B6"
+    },
+    "roegels": {
+      "name": "Roegels Barbecue Co",
+      "shortCode": "RB",
+      "city": "Houston",
+      "address": "",
+      "color": "#A93226"
+    },
+    "smoliks-smokehouse": {
+      "name": "Smolik's Smokehouse",
+      "shortCode": "SS",
+      "city": "Mathis",
+      "address": "",
+      "color": "#6B8E23"
+    },
+    "the-smoking-oak": {
+      "name": "The Smoking Oak",
+      "shortCode": "SO",
+      "city": "Mercedes",
+      "address": "",
+      "color": "#AF601A"
+    },
+    "killens-bbq": {
+      "name": "Killen's Barbecue",
+      "shortCode": "KI",
+      "city": "Pearland",
+      "address": "3613 E Broadway St, Pearland, TX 77581",
+      "color": "#922B21"
+    },
+    "2m-smokehouse": {
+      "name": "2M Smokehouse",
+      "shortCode": "2M",
+      "city": "San Antonio",
+      "address": "2731 S WW White Rd, San Antonio, TX 78222",
+      "color": "#B03A2E"
+    },
+    "harris-bbq": {
+      "name": "Harris Bar-B-Que",
+      "shortCode": "HA",
+      "city": "Cedar Hill",
+      "address": "",
+      "color": "#D68910"
+    },
+    "flores-barbecue": {
+      "name": "Flores Barbecue",
+      "shortCode": "FB",
+      "city": "Whitney",
+      "address": "",
+      "color": "#148F77"
+    },
+    "goldees-barbecue": {
+      "name": "Goldee's Barbecue",
+      "shortCode": "GO",
+      "city": "Fort Worth",
+      "address": "4645 Dick Price Rd, Fort Worth, TX 76140",
+      "color": "#E0A92E"
+    },
+    "interstellar-bbq": {
+      "name": "InterStellar BBQ",
+      "shortCode": "IS",
+      "city": "Austin",
+      "address": "12233 RM 620 N, Austin, TX 78750",
+      "color": "#3D5AAE"
+    },
+    "burnt-bean-co": {
+      "name": "Burnt Bean Co.",
+      "shortCode": "BB",
+      "city": "Seguin",
+      "address": "108 S Austin St, Seguin, TX 78155",
+      "color": "#7B341E"
+    },
+    "leroy-and-lewis": {
+      "name": "LeRoy and Lewis Barbecue",
+      "shortCode": "LL",
+      "city": "Austin",
+      "address": "121 Pickle Rd, Austin, TX 78704",
+      "color": "#566573"
+    },
+    "panther-city-bbq": {
+      "name": "Panther City BBQ",
+      "shortCode": "PC",
+      "city": "Fort Worth",
+      "address": "201 E Hattie St, Fort Worth, TX 76104",
+      "color": "#9B59B6"
+    },
+    "1701-barbecue": {
+      "name": "1701 Barbecue",
+      "shortCode": "1B",
+      "city": "Beaumont",
+      "address": "",
+      "color": "#148F77"
+    },
+    "blood-bros": {
+      "name": "Blood Bros. BBQ",
+      "shortCode": "BL",
+      "city": "Bellaire",
+      "address": "5425 Bellaire Blvd, Bellaire, TX 77401",
+      "color": "#7D3C98"
+    },
+    "bretts-backyard-bar-b-que": {
+      "name": "Brett's Backyard Bar-B-Que",
+      "shortCode": "BS",
+      "city": "Rockdale",
+      "address": "",
+      "color": "#3D5AAE"
+    },
+    "bretts-bbq-shop": {
+      "name": "Brett's BBQ Shop",
+      "shortCode": "BS",
+      "city": "Katy",
+      "address": "",
+      "color": "#9B59B6"
+    },
+    "brothertons-black-iron-barbecue": {
+      "name": "Brotherton's Black Iron Barbecue",
+      "shortCode": "BS",
+      "city": "Pflugerville",
+      "address": "",
+      "color": "#3D5AAE"
+    },
+    "butters-bbq": {
+      "name": "Butter's BBQ",
+      "shortCode": "BS",
+      "city": "Sinton",
+      "address": "",
+      "color": "#D68910"
+    },
+    "convenience-west": {
+      "name": "Convenience West",
+      "shortCode": "CW",
+      "city": "Marfa",
+      "address": "",
+      "color": "#2E8B57"
+    },
+    "daynes-craft-bbq": {
+      "name": "Dayne's Craft Barbecue",
+      "shortCode": "DA",
+      "city": "Aledo",
+      "address": "10996 FM Road 1187, Aledo, TX 76008",
+      "color": "#AF601A"
+    },
+    "desert-oak-barbecue": {
+      "name": "Desert Oak Barbecue",
+      "shortCode": "DO",
+      "city": "El Paso",
+      "address": "",
+      "color": "#B03A2E"
+    },
+    "distant-relatives": {
+      "name": "Distant Relatives",
+      "shortCode": "DR",
+      "city": "Austin",
+      "address": "3901 Promontory Point Dr, Austin, TX 78744",
+      "color": "#1ABC9C"
+    },
+    "eaker-barbecue": {
+      "name": "Eaker Barbecue",
+      "shortCode": "EB",
+      "city": "Fredericksburg",
+      "address": "",
+      "color": "#1F8A8A"
+    },
+    "feges-bbq": {
+      "name": "Feges BBQ",
+      "shortCode": "FE",
+      "city": "Houston",
+      "address": "3 Greenway Plaza, Houston, TX 77046",
+      "color": "#148F77"
+    },
+    "guess-family-barbecue": {
+      "name": "Guess Family Barbecue",
+      "shortCode": "GF",
+      "city": "Waco",
+      "address": "",
+      "color": "#196F3D"
+    },
+    "helberg-barbecue": {
+      "name": "Helberg Barbecue",
+      "shortCode": "HB",
+      "city": "Woodway",
+      "address": "",
+      "color": "#117A65"
+    },
+    "hurtado-barbecue": {
+      "name": "Hurtado Barbecue",
+      "shortCode": "HB",
+      "city": "Arlington",
+      "address": "",
+      "color": "#2471A3"
+    },
+    "lavaca-bbq": {
+      "name": "LaVaca BBQ",
+      "shortCode": "LV",
+      "city": "Port Lavaca",
+      "address": "201 N Virginia St, Port Lavaca, TX 77979",
+      "color": "#2471A3"
+    },
+    "ljs-bbq": {
+      "name": "LJ's BBQ",
+      "shortCode": "LS",
+      "city": "Brenham",
+      "address": "",
+      "color": "#9B59B6"
+    },
+    "mimsys-craft-barbecue": {
+      "name": "Mimsy's Craft Barbecue",
+      "shortCode": "MS",
+      "city": "Crockett",
+      "address": "",
+      "color": "#117A65"
+    },
+    "rejino-barbeque": {
+      "name": "Rejino Barbeque",
+      "shortCode": "RB",
+      "city": "Olton",
+      "address": "",
+      "color": "#2E8B57"
+    },
+    "slow-bone": {
+      "name": "Slow Bone BBQ",
+      "shortCode": "SB",
+      "city": "Dallas",
+      "address": "",
+      "color": "#196F3D"
+    },
+    "smoke-a-holics-bbq": {
+      "name": "Smoke-A-Holics BBQ",
+      "shortCode": "SH",
+      "city": "Fort Worth",
+      "address": "",
+      "color": "#CB4335"
+    },
+    "smokey-joes-bbq": {
+      "name": "Smokey Joe's BBQ",
+      "shortCode": "SJ",
+      "city": "Dallas",
+      "address": "",
+      "color": "#CB4335"
+    },
+    "teddys-barbecue": {
+      "name": "Teddy's Barbecue",
+      "shortCode": "TS",
+      "city": "Weslaco",
+      "address": "",
+      "color": "#3D5AAE"
+    },
+    "zavalas-barbecue": {
+      "name": "Zavala's Barbecue",
+      "shortCode": "ZS",
+      "city": "Grand Prairie",
+      "address": "",
+      "color": "#1ABC9C"
+    },
+    "the-shed-market": {
+      "name": "The Shed Market",
+      "shortCode": "SM",
+      "city": "Abilene",
+      "address": "",
+      "color": "#9B59B6"
+    },
+    "407-bbq": {
+      "name": "407 BBQ",
+      "shortCode": "40",
+      "city": "Argyle",
+      "address": "",
+      "color": "#D68910"
+    },
+    "225-bbq": {
+      "name": "225° BBQ",
+      "shortCode": "22",
+      "city": "Arlington",
+      "address": "",
+      "color": "#B03A2E"
+    },
+    "j-leonardis-barbeque": {
+      "name": "J. Leonardi's Barbeque",
+      "shortCode": "JL",
+      "city": "Austin",
+      "address": "",
+      "color": "#1ABC9C"
+    },
+    "moreno-barbecue": {
+      "name": "Moreno Barbecue",
+      "shortCode": "MB",
+      "city": "Austin",
+      "address": "",
+      "color": "#CA6F1E"
+    },
+    "whitfields": {
+      "name": "Whitfield's",
+      "shortCode": "WS",
+      "city": "Austin",
+      "address": "",
+      "color": "#2E8B57"
+    },
+    "smokin-zs-bbq": {
+      "name": "Smokin' Z's BBQ",
+      "shortCode": "SZ",
+      "city": "Bayou Vista",
+      "address": "",
+      "color": "#3D5AAE"
+    },
+    "charlies-bar-b-que": {
+      "name": "Charlie's Bar-B-Que",
+      "shortCode": "CS",
+      "city": "Beaumont",
+      "address": "",
+      "color": "#A0522D"
+    },
+    "bare-barbecue": {
+      "name": "Bare Barbecue",
+      "shortCode": "BB",
+      "city": "Cleburne",
+      "address": "",
+      "color": "#A0522D"
+    },
+    "1775-texas-pit-bbq": {
+      "name": "1775 Texas Pit BBQ",
+      "shortCode": "1T",
+      "city": "College Station",
+      "address": "",
+      "color": "#CB4335"
+    },
+    "oakd-bbq": {
+      "name": "Oak'd BBQ",
+      "shortCode": "OD",
+      "city": "Dallas",
+      "address": "",
+      "color": "#5D4037"
+    },
+    "choches": {
+      "name": "Choche's BBQ & Bar",
+      "shortCode": "CS",
+      "city": "Eagle Pass",
+      "address": "",
+      "color": "#2471A3"
+    },
+    "derek-allans-texas-barbecue": {
+      "name": "Derek Allan's Texas Barbecue",
+      "shortCode": "DA",
+      "city": "Fort Worth",
+      "address": "",
+      "color": "#7E5109"
+    },
+    "doziers-bbq-and-meat-market": {
+      "name": "Dozier's BBQ & Meat Market",
+      "shortCode": "DS",
+      "city": "Fulshear",
+      "address": "",
+      "color": "#7E5109"
+    },
+    "trevi-os-craft-smokehouse": {
+      "name": "Treviño's Craft Smokehouse",
+      "shortCode": "TO",
+      "city": "Graford",
+      "address": "",
+      "color": "#CA6F1E"
+    },
+    "ernies-pit-barbeque": {
+      "name": "Ernie's Pit Barbeque",
+      "shortCode": "ES",
+      "city": "Greenville",
+      "address": "",
+      "color": "#CA6F1E"
+    },
+    "kolacny-bar-b-q": {
+      "name": "Kolacny Bar-B-Q",
+      "shortCode": "KO",
+      "city": "Hallettsville",
+      "address": "",
+      "color": "#6B8E23"
+    },
+    "bodacious-bar-b-q-hallsville": {
+      "name": "Bodacious Bar-B-Q",
+      "shortCode": "BO",
+      "city": "Hallsville",
+      "address": "",
+      "color": "#B03A2E"
+    },
+    "avilas-bbq": {
+      "name": "Avila's BBQ",
+      "shortCode": "AS",
+      "city": "Hebbronville",
+      "address": "",
+      "color": "#1ABC9C"
+    },
+    "pizzitolas-bar-b-cue": {
+      "name": "Pizzitola's Bar-B-Cue",
+      "shortCode": "PS",
+      "city": "Houston",
+      "address": "",
+      "color": "#CA6F1E"
+    },
+    "lums": {
+      "name": "Lum's",
+      "shortCode": "LS",
+      "city": "Junction",
+      "address": "",
+      "color": "#5D4037"
+    },
+    "wades-barbecue": {
+      "name": "Wade's Barbecue",
+      "shortCode": "WS",
+      "city": "Lufkin",
+      "address": "",
+      "color": "#7D3C98"
+    },
+    "brick-vault": {
+      "name": "Brick Vault Brewery & Barbecue",
+      "shortCode": "BV",
+      "city": "Marathon",
+      "address": "",
+      "color": "#922B21"
+    },
+    "coastal-que-bbq": {
+      "name": "Coastal Que BBQ",
+      "shortCode": "CO",
+      "city": "Matagorda",
+      "address": "",
+      "color": "#8C6239"
+    },
+    "smokin-moon-bbq-and-beer-garden": {
+      "name": "Smokin' Moon BBQ & Beer Garden",
+      "shortCode": "SM",
+      "city": "Pharr",
+      "address": "",
+      "color": "#1ABC9C"
+    },
+    "harlem-road-texas-bbq": {
+      "name": "Harlem Road Texas BBQ",
+      "shortCode": "HR",
+      "city": "Richmond",
+      "address": "",
+      "color": "#CB4335"
+    },
+    "smoke-sessions-barbecue": {
+      "name": "Smoke Sessions Barbecue",
+      "shortCode": "SS",
+      "city": "Royse City",
+      "address": "",
+      "color": "#D68910"
+    },
+    "smoke-shack": {
+      "name": "Smoke Shack",
+      "shortCode": "SS",
+      "city": "San Antonio",
+      "address": "",
+      "color": "#1ABC9C"
+    },
+    "south-bbq-and-kitchen": {
+      "name": "South BBQ & Kitchen",
+      "shortCode": "SK",
+      "city": "San Antonio",
+      "address": "",
+      "color": "#CB4335"
+    },
+    "black-board": {
+      "name": "Black Board Bar B Q",
+      "shortCode": "BB",
+      "city": "Sisterdale",
+      "address": "",
+      "color": "#566573"
+    },
+    "pitforks-and-smokerings-bbq": {
+      "name": "Pitforks & Smokerings BBQ",
+      "shortCode": "PS",
+      "city": "Slaton",
+      "address": "",
+      "color": "#A93226"
+    },
+    "slaughters-bbq-oasis": {
+      "name": "Slaughter's BBQ Oasis",
+      "shortCode": "SS",
+      "city": "Sulphur Springs",
+      "address": "",
+      "color": "#B7950B"
+    },
+    "creekside-cookers-bbq-and-bar": {
+      "name": "Creekside Cookers BBQ and Bar",
+      "shortCode": "CC",
+      "city": "Wimberley",
+      "address": "",
+      "color": "#196F3D"
+    },
+    "redbird-bbq": {
+      "name": "Redbird BBQ",
+      "shortCode": "RB",
+      "city": "Port Neches",
+      "address": "1601 Magnolia Ave, Port Neches, TX 77651",
+      "color": "#CB4335"
+    },
+    "gws-bbq": {
+      "name": "GW's BBQ",
+      "shortCode": "GW",
+      "city": "San Juan",
+      "address": "San Juan, TX 78589",
+      "color": "#117A65"
+    },
+    "jays-bbq-shack": {
+      "name": "Jay's BBQ Shack",
+      "shortCode": "JS",
+      "city": "Abilene",
+      "address": "",
+      "color": "#CA6F1E"
+    },
+    "briscuits": {
+      "name": "Briscuits",
+      "shortCode": "BR",
+      "city": "Austin",
+      "address": "",
+      "color": "#6B8E23"
+    },
+    "kg-bbq": {
+      "name": "KG BBQ",
+      "shortCode": "KG",
+      "city": "Austin",
+      "address": "",
+      "color": "#A0522D"
+    },
+    "mum-foods-smokehouse-and-delicatessen": {
+      "name": "Mum Foods Smokehouse and Delicatessen",
+      "shortCode": "MF",
+      "city": "Austin",
+      "address": "",
+      "color": "#566573"
+    },
+    "north-texas-smoke-bbq": {
+      "name": "North Texas Smoke BBQ",
+      "shortCode": "NT",
+      "city": "Decatur",
+      "address": "",
+      "color": "#3D5AAE"
+    },
+    "smoak-town-bbq": {
+      "name": "Smoak Town BBQ",
+      "shortCode": "ST",
+      "city": "Fate",
+      "address": "",
+      "color": "#6B8E23"
+    },
+    "sabar-bbq": {
+      "name": "Sabar BBQ",
+      "shortCode": "SA",
+      "city": "Fort Worth",
+      "address": "",
+      "color": "#B03A2E"
+    },
+    "rosslers-blue-cord-barbecue": {
+      "name": "Rossler's Blue Cord Barbecue",
+      "shortCode": "RS",
+      "city": "Harker Heights",
+      "address": "",
+      "color": "#D68910"
+    },
+    "brisket-and-rice": {
+      "name": "Brisket & Rice",
+      "shortCode": "BR",
+      "city": "Houston",
+      "address": "",
+      "color": "#6B8E23"
+    },
+    "barbs-b-q": {
+      "name": "Barbs B Q",
+      "shortCode": "BA",
+      "city": "Lockhart",
+      "address": "",
+      "color": "#2471A3"
+    },
+    "sunbird-barbecue": {
+      "name": "Sunbird Barbecue",
+      "shortCode": "SB",
+      "city": "Longview",
+      "address": "",
+      "color": "#2471A3"
+    },
+    "b4-barbeque": {
+      "name": "B4 Barbeque",
+      "shortCode": "BB",
+      "city": "Mabank",
+      "address": "",
+      "color": "#1F8A8A"
+    },
+    "the-half-acre": {
+      "name": "The Half Acre",
+      "shortCode": "HA",
+      "city": "Midland",
+      "address": "",
+      "color": "#148F77"
+    },
+    "bar-a-bbq": {
+      "name": "Bar-A-BBQ",
+      "shortCode": "BA",
+      "city": "Montgomery",
+      "address": "",
+      "color": "#117A65"
+    },
+    "jennings-and-co-bbq": {
+      "name": "Jennings & Co. BBQ",
+      "shortCode": "JE",
+      "city": "Montgomery",
+      "address": "",
+      "color": "#3D5AAE"
+    },
+    "brendyns-bbq": {
+      "name": "Brendyn's BBQ",
+      "shortCode": "BS",
+      "city": "Nacogdoches",
+      "address": "",
+      "color": "#3D5AAE"
+    },
+    "yearbys-barbecue-and-waterice": {
+      "name": "Yearby's Barbecue & Waterice",
+      "shortCode": "YS",
+      "city": "Pilot Point",
+      "address": "",
+      "color": "#AF601A"
+    },
+    "reese-bros-barbecue": {
+      "name": "Reese Bros Barbecue",
+      "shortCode": "RB",
+      "city": "San Antonio",
+      "address": "",
+      "color": "#2471A3"
+    },
+    "rosemeyer-bar-b-q": {
+      "name": "Rosemeyer Bar-B-Q",
+      "shortCode": "RO",
+      "city": "Spring",
+      "address": "",
+      "color": "#922B21"
+    },
+    "slaughters-bbq": {
+      "name": "Slaughter's BBQ",
+      "shortCode": "SS",
+      "city": "Sulphur Springs",
+      "address": "",
+      "color": "#AF601A"
+    },
+    "smoke-n-ash-bbq": {
+      "name": "Smoke 'N Ash BBQ",
+      "shortCode": "SN",
+      "city": "Arlington",
+      "address": "",
+      "color": "#2471A3"
+    },
+    "rollin-smoke-bbq": {
+      "name": "Rollin Smoke BBQ",
+      "shortCode": "RS",
+      "city": "Austin",
+      "address": "",
+      "color": "#A0522D"
+    },
+    "space-city-b-b-q": {
+      "name": "Space City B-B-Q",
+      "shortCode": "SC",
+      "city": "Baytown",
+      "address": "",
+      "color": "#A0522D"
+    },
+    "louies-craft-bbq": {
+      "name": "Louie's Craft BBQ",
+      "shortCode": "LS",
+      "city": "Buda",
+      "address": "",
+      "color": "#6B8E23"
+    },
+    "niks-not-normal": {
+      "name": "Nik's Not Normal",
+      "shortCode": "NS",
+      "city": "Canyon Lake",
+      "address": "",
+      "color": "#117A65"
+    },
+    "weavers-bbq": {
+      "name": "Weaver's BBQ",
+      "shortCode": "WS",
+      "city": "Dayton",
+      "address": "",
+      "color": "#D68910"
+    },
+    "henrys-barbecue": {
+      "name": "Henry's Barbecue",
+      "shortCode": "HS",
+      "city": "Del Valle",
+      "address": "",
+      "color": "#3D5AAE"
+    },
+    "hallelujah-bbq": {
+      "name": "Hallelujah! BBQ",
+      "shortCode": "HA",
+      "city": "El Paso",
+      "address": "",
+      "color": "#A0522D"
+    },
+    "brix-barbecue": {
+      "name": "Brix Barbecue",
+      "shortCode": "BB",
+      "city": "Fort Worth",
+      "address": "",
+      "color": "#148F77"
+    },
+    "east-tx-rust-bbq": {
+      "name": "East TX Rust BBQ",
+      "shortCode": "ET",
+      "city": "Gilmer",
+      "address": "",
+      "color": "#B03A2E"
+    },
+    "j-bar-m-barbecue": {
+      "name": "J-Bar-M Barbecue",
+      "shortCode": "JM",
+      "city": "Houston",
+      "address": "",
+      "color": "#B7950B"
+    },
+    "bbq-fiends": {
+      "name": "BBQ Fiends",
+      "shortCode": "FI",
+      "city": "Hutto",
+      "address": "",
+      "color": "#D68910"
+    },
+    "jws-barbecue": {
+      "name": "JW's Barbecue",
+      "shortCode": "JS",
+      "city": "Jacksonville",
+      "address": "",
+      "color": "#6B8E23"
+    },
+    "jim-nez-y-friends": {
+      "name": "Jiménez y Friends",
+      "shortCode": "JN",
+      "city": "Lubbock",
+      "address": "",
+      "color": "#566573"
+    },
+    "el-sancho-tex-mex-bbq": {
+      "name": "El Sancho Tex Mex BBQ",
+      "shortCode": "ES",
+      "city": "Mission",
+      "address": "",
+      "color": "#9B59B6"
+    },
+    "patriotic-pig-smokehouse": {
+      "name": "Patriotic Pig Smokehouse",
+      "shortCode": "PP",
+      "city": "North Richland Hills",
+      "address": "",
+      "color": "#AF601A"
+    },
+    "brantley-creek-barbecue": {
+      "name": "Brantley Creek Barbecue",
+      "shortCode": "BC",
+      "city": "Odessa",
+      "address": "",
+      "color": "#CB4335"
+    },
+    "pustka-family-barbeque": {
+      "name": "Pustka Family Barbeque",
+      "shortCode": "PF",
+      "city": "Temple",
+      "address": "",
+      "color": "#148F77"
+    },
+    "hill-city-chop-house": {
+      "name": "Hill City Chop House",
+      "shortCode": "HC",
+      "city": "Tolar",
+      "address": "",
+      "color": "#5D4037"
+    },
+    "kellys-hill-country-bbq": {
+      "name": "Kelly's Hill Country BBQ",
+      "shortCode": "KS",
+      "city": "Wimberley",
+      "address": "",
+      "color": "#D68910"
+    },
+    "mouts-barbeque": {
+      "name": "Mout's Barbeque",
+      "shortCode": "MS",
+      "city": "Winnie",
+      "address": "",
+      "color": "#922B21"
+    }
   },
-
   "rankings": [
-    { "year": 2008, "id": "snows-bbq", "rank": 1, "tier": "top10" },
-
-    { "year": 2013, "id": "franklin-barbecue", "rank": 1, "tier": "top10" },
-    { "year": 2013, "id": "louie-mueller", "tier": "top10", "uncertain": true },
-    { "year": 2013, "id": "pecan-lodge",   "tier": "top10", "uncertain": true },
-    { "year": 2013, "id": "snows-bbq",     "tier": "top10", "uncertain": true },
-
-    { "year": 2017, "id": "snows-bbq",          "rank": 1,  "tier": "top10" },
-    { "year": 2017, "id": "franklin-barbecue",  "rank": 2,  "tier": "top10" },
-    { "year": 2017, "id": "cattleack-barbeque", "rank": 3,  "tier": "top10" },
-    { "year": 2017, "id": "bodacious-bbq",      "rank": 4,  "tier": "top10" },
-    { "year": 2017, "id": "louie-mueller",      "rank": 5,  "tier": "top10" },
-    { "year": 2017, "id": "tejas-chocolate",    "rank": 6,  "tier": "top10" },
-    { "year": 2017, "id": "corkscrew-bbq",      "rank": 7,  "tier": "top10" },
-    { "year": 2017, "id": "micklethwait",       "rank": 8,  "tier": "top10" },
-    { "year": 2017, "id": "evie-maes",          "rank": 9,  "tier": "top10" },
-    { "year": 2017, "id": "truth-bbq",          "rank": 10, "tier": "top10" },
-    { "year": 2017, "id": "pecan-lodge",        "tier": "top50" },
-
-    { "year": 2021, "id": "goldees-barbecue",   "rank": 1,  "tier": "top10" },
-    { "year": 2021, "id": "interstellar-bbq",   "rank": 2,  "tier": "top10" },
-    { "year": 2021, "id": "truth-bbq",          "rank": 3,  "tier": "top10" },
-    { "year": 2021, "id": "burnt-bean-co",      "rank": 4,  "tier": "top10" },
-    { "year": 2021, "id": "leroy-and-lewis",    "rank": 5,  "tier": "top10" },
-    { "year": 2021, "id": "cattleack-barbeque", "rank": 6,  "tier": "top10" },
-    { "year": 2021, "id": "franklin-barbecue",  "rank": 7,  "tier": "top10" },
-    { "year": 2021, "id": "evie-maes",          "rank": 8,  "tier": "top10" },
-    { "year": 2021, "id": "snows-bbq",          "rank": 9,  "tier": "top10" },
-    { "year": 2021, "id": "panther-city-bbq",   "rank": 10, "tier": "top10" },
-    { "year": 2021, "id": "louie-mueller",      "tier": "top50" },
-    { "year": 2021, "id": "corkscrew-bbq",      "tier": "top50" },
-    { "year": 2021, "id": "tejas-chocolate",    "tier": "top50" },
-    { "year": 2021, "id": "pecan-lodge",        "tier": "top50" },
-    { "year": 2021, "id": "killens-bbq",        "tier": "top50" },
-    { "year": 2021, "id": "la-barbecue",        "tier": "top50" },
-    { "year": 2021, "id": "valentinas",         "tier": "top50" },
-    { "year": 2021, "id": "2m-smokehouse",      "tier": "top50" },
-    { "year": 2021, "id": "blood-bros",         "tier": "top50" },
-    { "year": 2021, "id": "feges-bbq",          "tier": "top50" },
-    { "year": 2021, "id": "terry-blacks",       "tier": "top50" },
-    { "year": 2021, "id": "distant-relatives",  "tier": "top50" },
-
-    { "year": 2025, "id": "burnt-bean-co",      "rank": 1,  "tier": "top10" },
-    { "year": 2025, "id": "leroy-and-lewis",    "rank": 2,  "tier": "top10" },
-    { "year": 2025, "id": "goldees-barbecue",   "rank": 3,  "tier": "top10" },
-    { "year": 2025, "id": "redbird-bbq",        "rank": 4,  "tier": "top10" },
-    { "year": 2025, "id": "gws-bbq",            "rank": 5,  "tier": "top10" },
-    { "year": 2025, "id": "interstellar-bbq",   "rank": 6,  "tier": "top10" },
-    { "year": 2025, "id": "daynes-craft-bbq",   "rank": 7,  "tier": "top10" },
-    { "year": 2025, "id": "lavaca-bbq",         "rank": 8,  "tier": "top10" },
-    { "year": 2025, "id": "truth-bbq",          "rank": 9,  "tier": "top10" },
-    { "year": 2025, "id": "evie-maes",          "rank": 10, "tier": "top10" },
-    { "year": 2025, "id": "snows-bbq",          "tier": "top50" },
-    { "year": 2025, "id": "franklin-barbecue",  "tier": "top50" },
-    { "year": 2025, "id": "cattleack-barbeque", "tier": "top50" },
-    { "year": 2025, "id": "panther-city-bbq",   "tier": "top50" },
-    { "year": 2025, "id": "louie-mueller",      "tier": "top50" },
-    { "year": 2025, "id": "la-barbecue",        "tier": "top50" },
-    { "year": 2025, "id": "valentinas",         "tier": "top50" },
-    { "year": 2025, "id": "2m-smokehouse",      "tier": "top50" },
-    { "year": 2025, "id": "heim-bbq",           "tier": "top50" },
-    { "year": 2025, "id": "terry-blacks",       "tier": "top50" },
-    { "year": 2025, "id": "distant-relatives",  "tier": "top50" }
+    {
+      "year": 2008,
+      "id": "snows-bbq",
+      "tier": "top10",
+      "rank": 1
+    },
+    {
+      "year": 2008,
+      "id": "harolds-pit-bar-b-q",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "cripple-creek-b-b-q",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "lamberts-downtown-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "manns-smokehouse-bar-b-que",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "willy-rays-bar-b-q-and-grill",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "schoepfs",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "bertram-smoke-haus",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "colemans-barbeque",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "thompsons-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "bakers-ribs",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "tcs-ponderosa",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "austins-bbq-and-catering",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "vinceks-smokehouse",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "bubbas-bar-b-q",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "mcmillans-bar-b-q",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "cousins",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "city-meat-market",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "smokey-joes-bar-b-que-and-grill",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "mcbees-bar-b-q",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "burns-bar-b-que-cooking-and-catering",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "virgies-bar-b-que",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "new-zion-bar-b-q",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "stacys",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "buzzies",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "country-tavern",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "carolines-quality-and-quantity-bar-b-que",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "big-daddys-roadhouse-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "casstevens-cash-and-carry",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "coopers-old-time-pit-bar-b-que",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "kreuz-market",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "smittys-market",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "wild-blue-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "tom-and-bingos",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "city-market",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "luling-bar-b-q",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "whups-boomerang",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "pappys-bar-bq",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "vans-bar-b-q",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "baby-js-bar-b-que-and-fish",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "scholl-bros-bar-b-que",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "hashknife-on-the-chisholm",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "cowpokes",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "the-smokehouse",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "longhorn-cattle-company-barbecue-and-steak-restaurant",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "oo-smokehouse",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "opies-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "louie-mueller",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "taylor-cafe",
+      "tier": "top50"
+    },
+    {
+      "year": 2008,
+      "id": "stanleys-famous",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "franklin-barbecue",
+      "tier": "top10",
+      "rank": 1
+    },
+    {
+      "year": 2013,
+      "id": "louie-mueller",
+      "tier": "top10",
+      "uncertain": true
+    },
+    {
+      "year": 2013,
+      "id": "pecan-lodge",
+      "tier": "top10",
+      "uncertain": true
+    },
+    {
+      "year": 2013,
+      "id": "snows-bbq",
+      "tier": "top10",
+      "uncertain": true
+    },
+    {
+      "year": 2013,
+      "id": "the-original-willies-bar-b-que",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "tylers-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "john-mueller-meat-co",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "la-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "lamberts-downtown-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "stiles-switch",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "millers-smokehouse",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "fargos-pit-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "brooks-place",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "lockhart-smokehouse",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "austins-bbq-and-catering",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "mcmillans-bar-b-q",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "cousins",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "longorias-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "cranky-franks-barbecue-company",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "leons-worlds-finest-in-and-out-bar-b-que",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "meshacks",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "city-meat-market",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "bartleys-bar-b-q",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "bobs-bar-b-que",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "gatlins-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "virgies-bar-b-que",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "billys-old-fashion-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "josephs-riverport",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "buzzies",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "hitch-n-post-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "coopers-old-time-pit-bar-b-que",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "blacks-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "kreuz-market",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "city-market",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "whups-boomerang",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "hutchins-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "kirbys-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "hashknife-on-the-chisholm",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "cowpokes",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "podys-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "hatfields-bbq-and-blackjacks-beer-garden",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "the-granary",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "two-bros-bbq-market",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "hays-co-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "zimmerhanzels-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "opies-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "corkscrew-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "big-boys-bar-b-que",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "stanleys-famous",
+      "tier": "top50"
+    },
+    {
+      "year": 2013,
+      "id": "mumphords-place-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "snows-bbq",
+      "tier": "top10",
+      "rank": 1
+    },
+    {
+      "year": 2017,
+      "id": "franklin-barbecue",
+      "tier": "top10",
+      "rank": 2
+    },
+    {
+      "year": 2017,
+      "id": "cattleack-barbeque",
+      "tier": "top10",
+      "rank": 3
+    },
+    {
+      "year": 2017,
+      "id": "bodacious-bbq",
+      "tier": "top10",
+      "rank": 4
+    },
+    {
+      "year": 2017,
+      "id": "louie-mueller",
+      "tier": "top10",
+      "rank": 5
+    },
+    {
+      "year": 2017,
+      "id": "tejas-chocolate",
+      "tier": "top10",
+      "rank": 6
+    },
+    {
+      "year": 2017,
+      "id": "corkscrew-bbq",
+      "tier": "top10",
+      "rank": 7
+    },
+    {
+      "year": 2017,
+      "id": "micklethwait",
+      "tier": "top10",
+      "rank": 8
+    },
+    {
+      "year": 2017,
+      "id": "evie-maes",
+      "tier": "top10",
+      "rank": 9
+    },
+    {
+      "year": 2017,
+      "id": "truth-bbq",
+      "tier": "top10",
+      "rank": 10
+    },
+    {
+      "year": 2017,
+      "id": "stillwater-barbeque",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "tylers-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "freedmens",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "la-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "stiles-switch",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "terry-blacks",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "valentinas",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "millers-smokehouse",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "veras-backyard-bar-b-que",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "fargos-pit-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "paynes-bar-b-q-shak",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "bbq-on-the-brazos",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "lockhart-smokehouse",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "pecan-lodge",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "top-5-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "4-ts-bar-b-q",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "heim-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "baker-boys-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "rio-grande-grill-bbq-and-tex-mex",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "blue-moon-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "heavys-bar-b-que",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "gatlins-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "pinkertons",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "the-pit-room",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "roegels",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "josephs-riverport",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "coopers-old-time-pit-bar-b-que",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "kreuz-market",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "city-market",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "smoliks-smokehouse",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "hutchins-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "the-smoking-oak",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "killens-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "podys-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "2m-smokehouse",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "the-granary",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "hays-co-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "stanleys-famous",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "harris-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2017,
+      "id": "flores-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "goldees-barbecue",
+      "tier": "top10",
+      "rank": 1
+    },
+    {
+      "year": 2021,
+      "id": "interstellar-bbq",
+      "tier": "top10",
+      "rank": 2
+    },
+    {
+      "year": 2021,
+      "id": "truth-bbq",
+      "tier": "top10",
+      "rank": 3
+    },
+    {
+      "year": 2021,
+      "id": "burnt-bean-co",
+      "tier": "top10",
+      "rank": 4
+    },
+    {
+      "year": 2021,
+      "id": "leroy-and-lewis",
+      "tier": "top10",
+      "rank": 5
+    },
+    {
+      "year": 2021,
+      "id": "cattleack-barbeque",
+      "tier": "top10",
+      "rank": 6
+    },
+    {
+      "year": 2021,
+      "id": "franklin-barbecue",
+      "tier": "top10",
+      "rank": 7
+    },
+    {
+      "year": 2021,
+      "id": "evie-maes",
+      "tier": "top10",
+      "rank": 8
+    },
+    {
+      "year": 2021,
+      "id": "snows-bbq",
+      "tier": "top10",
+      "rank": 9
+    },
+    {
+      "year": 2021,
+      "id": "panther-city-bbq",
+      "tier": "top10",
+      "rank": 10
+    },
+    {
+      "year": 2021,
+      "id": "1701-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "2m-smokehouse",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "baker-boys-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "blood-bros",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "bretts-backyard-bar-b-que",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "bretts-bbq-shop",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "brothertons-black-iron-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "butters-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "convenience-west",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "corkscrew-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "daynes-craft-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "desert-oak-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "distant-relatives",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "eaker-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "feges-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "guess-family-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "hays-co-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "helberg-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "hurtado-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "hutchins-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "killens-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "la-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "lavaca-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "ljs-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "louie-mueller",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "micklethwait",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "millers-smokehouse",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "mimsys-craft-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "pinkertons",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "rejino-barbeque",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "slow-bone",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "smoke-a-holics-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "smokey-joes-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "stanleys-famous",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "teddys-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "tejas-chocolate",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "terry-blacks",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "valentinas",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "veras-backyard-bar-b-que",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "zavalas-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2021,
+      "id": "the-shed-market",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "407-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "225-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "j-leonardis-barbeque",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "moreno-barbecue",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "stiles-switch",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "whitfields",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "smokin-zs-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "charlies-bar-b-que",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "fargos-pit-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "harris-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "bare-barbecue",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "1775-texas-pit-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "bbq-on-the-brazos",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "oakd-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "pecan-lodge",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "choches",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "derek-allans-texas-barbecue",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "heim-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "doziers-bbq-and-meat-market",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "meshacks",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "trevi-os-craft-smokehouse",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "ernies-pit-barbeque",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "kolacny-bar-b-q",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "bodacious-bar-b-q-hallsville",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "blue-moon-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "avilas-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "gatlins-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "pizzitolas-bar-b-cue",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "roegels",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "josephs-riverport",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "lums",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "kreuz-market",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "tom-and-bingos",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "wades-barbecue",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "city-market",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "brick-vault",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "coastal-que-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "podys-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "smokin-moon-bbq-and-beer-garden",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "lockhart-smokehouse",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "harlem-road-texas-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "smoke-sessions-barbecue",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "smoke-shack",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "south-bbq-and-kitchen",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "black-board",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "pitforks-and-smokerings-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "zimmerhanzels-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "slaughters-bbq-oasis",
+      "tier": "honorable"
+    },
+    {
+      "year": 2021,
+      "id": "creekside-cookers-bbq-and-bar",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "burnt-bean-co",
+      "tier": "top10",
+      "rank": 1
+    },
+    {
+      "year": 2025,
+      "id": "leroy-and-lewis",
+      "tier": "top10",
+      "rank": 2
+    },
+    {
+      "year": 2025,
+      "id": "goldees-barbecue",
+      "tier": "top10",
+      "rank": 3
+    },
+    {
+      "year": 2025,
+      "id": "redbird-bbq",
+      "tier": "top10",
+      "rank": 4
+    },
+    {
+      "year": 2025,
+      "id": "gws-bbq",
+      "tier": "top10",
+      "rank": 5
+    },
+    {
+      "year": 2025,
+      "id": "interstellar-bbq",
+      "tier": "top10",
+      "rank": 6
+    },
+    {
+      "year": 2025,
+      "id": "daynes-craft-bbq",
+      "tier": "top10",
+      "rank": 7
+    },
+    {
+      "year": 2025,
+      "id": "lavaca-bbq",
+      "tier": "top10",
+      "rank": 8
+    },
+    {
+      "year": 2025,
+      "id": "truth-bbq",
+      "tier": "top10",
+      "rank": 9
+    },
+    {
+      "year": 2025,
+      "id": "evie-maes",
+      "tier": "top10",
+      "rank": 10
+    },
+    {
+      "year": 2025,
+      "id": "jays-bbq-shack",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "briscuits",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "franklin-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "kg-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "la-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "mum-foods-smokehouse-and-delicatessen",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "stiles-switch",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "1701-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "millers-smokehouse",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "ljs-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "mimsys-craft-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "slow-bone",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "smokey-joes-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "north-texas-smoke-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "cattleack-barbeque",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "smoak-town-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "sabar-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "panther-city-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "rosslers-blue-cord-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "brisket-and-rice",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "pinkertons",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "snows-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "barbs-b-q",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "sunbird-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "b4-barbeque",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "the-half-acre",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "bar-a-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "jennings-and-co-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "brendyns-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "rejino-barbeque",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "yearbys-barbecue-and-waterice",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "2m-smokehouse",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "reese-bros-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "butters-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "corkscrew-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "rosemeyer-bar-b-q",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "slaughters-bbq",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "louie-mueller",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "teddys-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "helberg-barbecue",
+      "tier": "top50"
+    },
+    {
+      "year": 2025,
+      "id": "hurtado-barbecue",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "smoke-n-ash-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "distant-relatives",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "micklethwait",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "rollin-smoke-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "terry-blacks",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "space-city-b-b-q",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "blood-bros",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "schoepfs",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "veras-backyard-bar-b-que",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "louies-craft-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "niks-not-normal",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "1775-texas-pit-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "weavers-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "henrys-barbecue",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "choches",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "desert-oak-barbecue",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "hallelujah-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "brix-barbecue",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "smoke-a-holics-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "eaker-barbecue",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "east-tx-rust-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "baker-boys-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "zavalas-barbecue",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "feges-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "gatlins-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "j-bar-m-barbecue",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "roegels",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "bbq-fiends",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "jws-barbecue",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "bretts-bbq-shop",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "kreuz-market",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "jim-nez-y-friends",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "brick-vault",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "hutchins-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "el-sancho-tex-mex-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "patriotic-pig-smokehouse",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "brantley-creek-barbecue",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "killens-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "brothertons-black-iron-barbecue",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "harlem-road-texas-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "smoke-sessions-barbecue",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "black-board",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "pitforks-and-smokerings-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "pustka-family-barbeque",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "hill-city-chop-house",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "tejas-chocolate",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "stanleys-famous",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "kellys-hill-country-bbq",
+      "tier": "honorable"
+    },
+    {
+      "year": 2025,
+      "id": "mouts-barbeque",
+      "tier": "honorable"
+    }
   ]
 }
